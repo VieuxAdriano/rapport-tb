@@ -1,8 +1,19 @@
-L'introduction est une section requise dans un rapport technique. Introduisez votre travail, l'idée de départ et les objectifs attendus. Un lecteur qui découvrirait votre projet au travers de cette introduction devrait ainsi être capable d'en comprendre le cadre, l'idée générale et les aboutissants du projet.
+\newenvironment{listage}{%
+    \par%
+    \medskip
+    \leftskip=4em\rightskip=2em%
+    \noindent\ignorespaces}{%
+    \par\medskip}
 
 \section{Contexte}
-Cette section \underline{n'est pas obligatoire}, mais elle est souvent présente dans un rapport technique pour compléter l'introduction et définir le contexte du travail \cad le cadre formel dans lequel le travail est mené.
-
+En l'état actuel, lorsqu'un les pompiers doivent intervenir dans le cas d'un incident impliquant des fuites d'hydrocarbures sur route, la répartition
+du produit absorbant se fait via une remorque-semoirs dont les sections de dépose du produit sont télécommandées directement par un opérateur.
+Cela signifie que durant l'intervention, une personne doit marcher à côté de la remorque afin d'observer et contrôler la répartition du produit, nous pouvons relever les problèmes suivant:
+\begin{listage}
+    1. L'opérateur doit marcher: Limitation de la vitesse du véhicule, longues distances épuisantes.\newline
+    2. La détection se fait à l'oeil nu: L'opérateur doit rester concentrer en permanance au risque de devoir repasser sur certaines zone.\newline
+    3. La commande est manuelle: Possibilité d'erreur humaine sur la commande risquant la dépose de surplus de produit ou de devoir repasser sur certaines zone.
+\end{listage}
 %%if
 \section{Citations et bibliographie}
 Citer vos sources est essentiel. Avec \texttt{biblatex} vous pouvez facilement citer des articles, des livres ou des sites internet. Toutes les citations dans le texte seront automatiquement regroupées en fin de document dans la section \guillemotleft Bibliographie\guillemotright. Par exemple, citons un article d'Einstein \cite{einstein} ou le livre de Dirac \cite{dirac}.
