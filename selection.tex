@@ -1,3 +1,26 @@
+\section{Communication}
+Dans le cadre de ce projet, plusieurs éléments devront communiquer entre eux, notamment l'unité de traitement d'image,
+l'actionnement de la télécommande ainsi que le retour vidéo pour le copilote, il est donc important de définir comment ils communiqueront entre eux.
+Il est important de se rappeler que leurs emplacements seront les suivants:\\
+\begin{table}[h]
+    \begin{center}
+        \caption{Liste des élements et emplacements}
+        \begin{tabular}{|c|l|}
+            Elements                        & Emplacement                                 \\ \hline
+            Caméra et boitier de traitement & Barre de la remorque                        \\
+            Actionnement de la télécommande & A proximité du rangement de la télécommande \\
+            Affichage pour copilote         & Place passager du véhicule
+        \end{tabular}
+    \end{center}
+\end{table}\\
+Dans notre cas de figure, les élements sont séparés de plusieurs mètres, voir même dans un autre véhicule. La communication cablée n'est pas une solution.
+\begin{itemize}
+    \item Via une connexion Bluetooth.
+    \item Via un réseau \Gls{wifi} local.
+\end{itemize}
+La connexion sans fil doit garantir une connectivité stable sur un rayon de 3 mètres autour du véhicule (avec obstacles). De plus, le débit doit être
+suffisant pour diffuser un flux vidéo (entre 30 et 60 \Gls{fps}). La solution du réseau local \Gls{wifi} semble être la meilleure.\\
+\textbf{La possibilité de communiquer via un réseau local \Gls{wifi} devient donc un prérequis pour la suite de la sélection du matériel.}
 \section{Capture et traitement d'image}
 \subsection{Eclairage}
 La sélection de l'éclairage va dépendre des points suivants:
@@ -15,10 +38,52 @@ Détail..
 
 \section{Système de commande}
 \subsection{Actionneurs de la télécommande}
-Détails
+Les idées de base d'actionneurs permettant d'appuyer sur la télécommande sont les suivants:
+\begin{listage}
+    1. Vérins électriques.\\
+    2. Servomoteurs.\\
+    3. Moteurs pas à pas.
+\end{listage}
+
+Les vérins électriques ont l'avantages d'être facile à installer, il suffirait d'une plaque de support perforée au dessus de chaque bouton et d'y insérer
+les pièces à la profondeur souhaitée, puis de les actionner/rétracter pour appuyer ou non sur un bouton. Cependant, les vérins disponibles sur le marché semblent être surdimensionnés pour la tâche en question, les forces et
+consommation pour un fonctionnement normal sont très grand. Les prix sont également très élevé, il est difficile de trouver des pièces de moins de 100 CHF l'unité
+pour les dimensions désirées. De plus, les délais de livraison durant la période dédiée au développement de se projet sont relativements incertains pour se genre de pièce.\\
+
+L'idée, avec les servomoteurs, serait de les équiper d'un élement de préhension tangent à l'axe de rotation du moteur permettant de presser sur les boutons.
+Le pilotage d'un servomoteur se fait par PWM, nécessitant donc qu'une seule sortie par élements au niveau de la carte de commande. De plus, il est assez facile de
+trouver des servomoteurs avec des caractéristiques en phase avec le projet, c'est à dire d'un point de vu taille, force et consommation, et ce à des prix
+raisonnable (avoisinant les 5 à 10 CHF). L'installation sur un support est plus complexe que pour les vérins.\\
+
+L'utilisation du moteur pas à pas serait similaires au servomoteur, c'est à dire avec un élement qui presse sur les boutons.
+Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix résonnable (avoisinnant 10 CHF). La commande d'un moteur pas à pas
+se fait usuellement via un pilote servant d'interface entre le moteur et la carte de commande. Il est nécessaire d'avoir une carte pilote par moteur (environ 10 CHF par unité).
+L'installation sur un support est plus complexe que pour les vérins.\\
+
+Avec ces informations, en comparant prix, facilité d'acquisition, pilotage, caractéristique obtenable, délai de livraison, la solution du servomoteur semble être la plus
+appropriée.\textbf{Je vais donc baser la suite du développement avec des servomoteurs comme actionneurs de la télécommande.}\\
+
 \subsection{Pilotage des actionneurs}
-Détails
+La carte de commande servant à piloter les servomoteurs devra être capable de:
+\begin{listage}
+    1. Commander 6 servomoteurs simultanément.\\
+    2. Communiquer (reçevoir des informations) avec le boitier de traitement d'image.\\
+    3. Afficher un statut via un voyant (une led par exemple).
+\end{listage}
+
+Plusieurs possibilités se présentent , parmis la famille des Arduinos:
+\begin{listage}
+    1. Arduino Nano 6.\\ 20CHF
+    2. Arduino Micro 7.\\ 25CHF
+    3. Arduino Uno 6.\\ 25-30CHF
+    4. Arduino Mega 15.\\ 40CHF
+    5. Arduino MKR WiFi 1010 10. 40CHF
+\end{listage}
+Les 4 premières cartes présentent cochent 2 parmis les 3 prérequis de sélection. Ce qui les différentie c'est majoritairement le coup, l'encombrement et la vitesse de travail.
+Au vu de la simplicité des tâches, un Nano ou Micro serait suffisant. En imaginant que la communication avec l'unité de traitement d'image se fasse via un réseau \Gls{wifi} local,
+il faudrait ajouter un module spécifique permettant la connexion, par exemple l'ESP8266.\\
+En plus de pouvoir commander les servomoteurs et d'afficher un statut, le MKR WiFi 1010 possède un module \Gls{wifi} préintégré.
+Les prix entre les cartes avec l'ajout d'un module et le MKR WiFi 1010 sont plus ou moins semblable. Ce dernier offre l'avantage d'être compacte et de limiter le câblage.
+\textbf{Je vais donc baser la suite du développement avec l'Arduino MKR WiFi 1010.}
 \section{Retour vidéo}
-\subsection{Page web?}
-Détails
-\section{Communication}
+Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbure doivent être visible par le copilote
