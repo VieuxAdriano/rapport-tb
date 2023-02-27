@@ -14,6 +14,7 @@ Il est important de se rappeler que leurs emplacements seront les suivants:\\
     \end{center}
 \end{table}\\
 Dans notre cas de figure, les élements sont séparés de plusieurs mètres, voir même dans un autre véhicule. La communication cablée n'est pas une solution.
+Parmis les connexions sans fil:
 \begin{itemize}
     \item Via une connexion Bluetooth.
     \item Via un réseau \Gls{wifi} local.
@@ -32,9 +33,31 @@ La sélection de l'éclairage va dépendre des points suivants:
 Le premier point s'est défini durant la phase de recherche, l'idéal serait d'avoir une source émettant une onde de 3300 \si{\nano\metre}.
 
 \subsection{Caméra}
-Détail..
+La caméra à choisir doit remplir les critères suivants:
+\begin{itemize}
+    \item Pas de filtre IR (ou facilement retirable).
+    \item Compatible avec une carte de traitement d'image.
+    \item Champ de vision suffisant pour observer la largeur de la route.
+\end{itemize}
+
+La caméra Module 3 "NoIR - Wide" de Rapsberry Pi \cite{camera} semble répondre aux critères. Avec une mise au point à partir de 5cm vers l'infini,
+une résolution de 11.9 mégapixels (4608x2592) et d'un champ de vision de \ang{120}, elle offre une image nette et très détaillée avec beaucoup de liberté sur
+son placement.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm,angle=-90]{assets/figures/camera.png}
+    \caption{Camera module 3 NoIR wide}
+\end{figure}
+
 \subsection{Système embarqué de traitement}
-Détail..
+\begin{itemize}
+    \item Peu encombrant.
+    \item Relativement puissant.
+    \item Communication WiFi en tant qu'émetteur.
+    \item Compatible avec la caméra.
+\end{itemize}
+Rapsberry Pi 4.
+
 
 \section{Système de commande}
 \subsection{Actionneurs de la télécommande}
@@ -72,18 +95,58 @@ La carte de commande servant à piloter les servomoteurs devra être capable de:
 \end{listage}
 
 Plusieurs possibilités se présentent , parmis la famille des Arduinos:
-\begin{listage}
-    1. Arduino Nano 6.\\ 20CHF
-    2. Arduino Micro 7.\\ 25CHF
-    3. Arduino Uno 6.\\ 25-30CHF
-    4. Arduino Mega 15.\\ 40CHF
-    5. Arduino MKR WiFi 1010 10. 40CHF
-\end{listage}
-Les 4 premières cartes présentent cochent 2 parmis les 3 prérequis de sélection. Ce qui les différentie c'est majoritairement le coup, l'encombrement et la vitesse de travail.
+\begin{table}[H]
+    \begin{center}
+        \caption{Liste de cartes embarqueés}
+        \begin{tabular}{|l|l|l|l|}
+            Cartes                & Sortie PWM & Prix moyen   & Module \Gls{wifi} intégré? \\ \hline
+            Arduino Nano          & 6          & 20 \Gls{chf} & Non                        \\
+            Arduino Micro         & 7          & 25 \Gls{chf} & Non                        \\
+            Arduino Uno           & 6          & 30 \Gls{chf} & Non                        \\
+            Arduino Mega          & 15         & 40 \Gls{chf} & Non                        \\
+            Arduino MKR WiFi 1010 & 10         & 35 \Gls{chf} & Oui
+        \end{tabular}
+    \end{center}
+\end{table}\\
+
+Les 4 premières cartes présentent cochent 2 parmis les 3 prérequis de sélection. Ce qui les différentie c'est majoritairement le coût, l'encombrement et la vitesse de travail.
 Au vu de la simplicité des tâches, un Nano ou Micro serait suffisant. En imaginant que la communication avec l'unité de traitement d'image se fasse via un réseau \Gls{wifi} local,
 il faudrait ajouter un module spécifique permettant la connexion, par exemple l'ESP8266.\\
 En plus de pouvoir commander les servomoteurs et d'afficher un statut, le MKR WiFi 1010 possède un module \Gls{wifi} préintégré.
 Les prix entre les cartes avec l'ajout d'un module et le MKR WiFi 1010 sont plus ou moins semblable. Ce dernier offre l'avantage d'être compacte et de limiter le câblage.
-\textbf{Je vais donc baser la suite du développement avec l'Arduino MKR WiFi 1010.}
+\textbf{Je vais donc baser la suite du développement avec l'Arduino MKR WiFi 1010.} \cite{MKR}
 \section{Retour vidéo}
-Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbure doivent être visible par le copilote
+Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbure doivent être visible par le copilote.
+La visualisation du retour se fera naturellement via un écran. Les idées de bases sont les suivantes:
+\begin{itemize}
+    \item Installation d'un écran portable.
+    \item Affichage via une application mobile.
+    \item Affichage via une page web locale.
+\end{itemize}
+\\
+Les problèmes de l'écran portable sont multiples, notamment l'alimentation, le câblage vers une source d'alimentation peut-être encombrante
+et limiterait les mouvements/déplacements de l'utilisateur. De plus la connexion vers un réseau \Gls{wifi} local n'est pas garantie.\\
+L'idée de l'application mobile présente certains avantages, comme l'installation unique. L'opérateur n'aurait qu'à mettre l'application
+qu'une seul fois sur son téléphone portable pour accéder au retour vidéo (sous condition d'être connecté au réseau \Gls{wifi} local).
+Tout le monde serait alors équiper de son propre écran, petit, pratique et peu encombrant. Le problème majeur est la différence de système d'exploitation
+entre les téléphones portables. Le développement d'une application universelle est compliquée, il faudrait avoir une application par système grand public.
+De plus, l'installation d'une application non reconnu par Apple doit être téléversée directement à partir d'un ordinateur.\\
+L'affichage du retour vidéo semble être optimal. En plus de regrouper les avantages de l'application mobile, nous n'avons débarrassons des défauts.
+L'accès au lien de la page pourrait se faire via un QR code à scanner sur le boitier de commande.
+\textbf{L'affichage se fera via une page web locale.}
+
+\section{Résumé des décisions}
+\begin{table}[H]
+    \begin{center}
+        \caption{Table de résumé des décisions}
+        \begin{tabular}{|c|l|}
+            Elements                  & Solutions                        \\ \hline
+            Communication             & Réseau \Gls{wifi} Local          \\
+            Caméra                    & Rpi module 3 NoIR Wide           \\
+            Traitement d'image        & Rapsberry Pi 4                   \\
+            Actionnement télécommande & Servomoteurs                     \\
+            Commande actionneurs      & Arduino MKR WiFi 1010 \cite{MKR} \\
+            Affichage pour copilote   & Page web local                   \\
+        \end{tabular}
+    \end{center}
+\end{table}\\
