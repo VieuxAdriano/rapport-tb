@@ -1,0 +1,50 @@
+\section{Communication}
+Il a été décidé durant la phase de recherche que l'affichage se fera via un écran "volant" qui recevera les images via un réseau WiFi local
+hébergé par le Rapsberry Pi. Les étapes pour y arriver sont les suivantes:
+\begin{enumerate}
+    \item Avoir flashé avec l'OS Rapsberry (en utilisant Rapsberry imager ou BalenaCloud).
+    \item Être connecté à internet.
+    \item Télécharger le package 'hostapd': \textbf{sudo apt install hostapd}.
+    \item Télécharger le package 'dnsmasq': \textbf{sudo apt-get install dnsmasq}.
+    \item Atteindre le fichier conf suivant: \textbf{sudo nano /etc/hostapd/hostapd.conf}.
+    \item Y copier le code de la figure \ref{config_hostapd}, sauver + quitter: ctrl+X, puis Y, puis Enter.
+    \item Atteindre le fichier suivant: \textbf{sudo nano /etc/default/hostapd}.
+    \item Y copier le code de la figure \ref{default}, sauver + quitter: ctrl+X, puis Y, puis Enter.
+    \item Atteindre le fichier suivant: \textbf{sudo nano /etc/dhcpcd.conf}.
+    \item Y copier le code de la figure \ref{dhcpcd}, sauver + quitter: ctrl+X, puis Y, puis Enter.
+    \item Redémarrer le Rpi4 avec: \textbf{sudo reboot}.
+\end{enumerate}
+
+\begin{listing}[h]
+    \inputminted{makefile}{assets/figures/hostapd.make}
+    \caption{Configuration hostapd \label{config_hostapd}}
+\end{listing}
+
+\begin{listing}[h]
+    \inputminted{makefile}{assets/figures/default.make}
+    \caption{Lancement du réseau au démarrage \label{default}}
+\end{listing}
+
+\begin{listing}[h]
+    \inputminted{makefile}{assets/figures/dhcpcd.java}
+    \caption{configuration dhcpcd \label{dhcpcd}}
+\end{listing}
+
+Avec l'ajout de ces lignes, le Rpi4 emet un réseau local dès son démarrage. Il est possible de s'y connecter avec n'importe quel
+type d'appareil. Le nom du réseau et le mot de passe sont paramétrables, actuellement, c'est:
+\begin{itemize}
+    \item Nom du réseau: \textbf{SemoirSDIS}
+    \item Mot de passe: \textbf{semoirSDIS}
+\end{itemize}\\
+À noter qu'il est obligatoire de s'y connecter pour avoir le retour vidéo.
+\section{Affichage}
+Il existe des codes sources disponibles en ligne permettant d'afficher le retour caméra de marque Rapsberry Pi.
+Je me suis inspiré de celui-ci pour mon affichage: \cite{code_camera}.\\
+\textbf{Mettre screenshot du rendu sur natel/pc}\\
+\section{Accès}
+L'accès au retour vidéo se fait via une page locale dont l'accès nécessite d'être connecté au WiFi émis par le Rpi4.
+La page à atteindre est la suivante:
+\begin{itemize}
+    \item  xxx.xxx.xx.xx
+\end{itemize}
+Ou avec le QR code suivant: METTRE QR CODE

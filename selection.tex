@@ -1,3 +1,20 @@
+\section{Alimentation}
+Nous avons vu que la remorque utilise une prise 13 broches pour son alimentation. Le véhicule tractant la remorque peut varier, il n'y a donc pas de
+garanti qu'il y ait une deuxième prise disponibles pour le système qui sera ajouté. L'idéal serait une sortie de "multiprise" 13 broches à laquelle
+on connecte la remorque de base ainsi que le système à ajouter, puis brancher le tout sur une seule prise.\\
+Parmis les broches du connecteur, seul la sortie 12 [V] nous intéresse.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{assets/figures/broches.jpg}
+    \caption{Sortie prises 13 broches - \cite{prise}}
+\end{figure}
+Ce qui nous intéresse:
+\begin{itemize}
+    \item Broche 9  : 12 [V]
+    \item Broche 13 : Masse
+\end{itemize}
+\newpage
+
 \section{Communication}
 Dans le cadre de ce projet, plusieurs éléments devront communiquer entre eux, notamment l'unité de traitement d'image,
 l'actionnement de la télécommande ainsi que le retour vidéo pour le copilote, il est donc important de définir comment ils communiqueront entre eux.
@@ -6,22 +23,26 @@ Il est important de se rappeler que leurs emplacements seront les suivants:\\
     \begin{center}
         \caption{Liste des élements et emplacements}
         \begin{tabular}{|c|l|}
-            Elements                        & Emplacement                                 \\ \hline
-            Caméra et boitier de traitement & Barre de la remorque                        \\
-            Actionnement de la télécommande & A proximité du rangement de la télécommande \\
+            Elements                        & Emplacement                \\ \hline
+            Caméra et boitier de traitement & Support de la remorque     \\
+            Eclairage                       & Timon                      \\
+            Actionnement de la télécommande & Support de la remorque     \\
             Affichage pour copilote         & Place passager du véhicule
         \end{tabular}
     \end{center}
 \end{table}\\
-Dans notre cas de figure, les élements sont séparés de plusieurs mètres, voir même dans un autre véhicule. La communication cablée n'est pas une solution.
+Dans notre cas de figure, les élements sont concentrés sur la remorque et dans le véhicule tractant. La communication cablée est possible
+entre la caméra, le boitier, l'actionnement de la télécommande et éventuellement l'éclairage si celui-ci à besoin d'être contrôlé spécifiquement.
+En ce qui concerne le retour vidéo, il se trouvera principalement dans l'habitacle du véhicule, mais pourrait également être emporté autour du véhicule,
+dans ce cas, la connexion filaire n'est pas envisageable.\\
 Parmis les connexions sans fil:
 \begin{itemize}
     \item Via une connexion Bluetooth.
     \item Via un réseau \Gls{wifi} local.
 \end{itemize}
-La connexion sans fil doit garantir une connectivité stable sur un rayon de 3 mètres autour du véhicule (avec obstacles). De plus, le débit doit être
+La connexion sans fil doit garantir une connectivité stable sur un rayon de 5 mètres autour du véhicule (avec obstacles). De plus, le débit doit être
 suffisant pour diffuser un flux vidéo (entre 30 et 60 \Gls{fps}). La solution du réseau local \Gls{wifi} semble être la meilleure.\\
-\textbf{La possibilité de communiquer via un réseau local \Gls{wifi} devient donc un prérequis pour la suite de la sélection du matériel.}
+\textbf{La possibilité de communiquer via un réseau local \Gls{wifi} devient donc un prérequis pour le retour vidéo.}
 \section{Capture et traitement d'image}
 \subsection{Eclairage}
 La sélection de l'éclairage va dépendre des points suivants:
