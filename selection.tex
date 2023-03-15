@@ -1,8 +1,6 @@
 \section{Alimentation}
 Nous avons vu que la remorque utilise une prise 13 broches pour son alimentation. Le véhicule tractant la remorque peut varier, il n'y a donc pas de
-garanti qu'il y ait une deuxième prise disponibles pour le système qui sera ajouté. L'idéal serait une sortie de "multiprise" 13 broches à laquelle
-on connecte la remorque de base ainsi que le système à ajouter, puis brancher le tout sur une seule prise.\\
-Parmis les broches du connecteur, seul la sortie 12 [V] nous intéresse.
+garanti qu'il y ait une deuxième prise disponibles pour le système qui sera ajouté. L'idéal serait d'avoir accès à la masse et au 12[V].
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{assets/figures/broches.jpg}
@@ -13,6 +11,14 @@ Ce qui nous intéresse:
     \item Broche 9  : 12 [V]
     \item Broche 13 : Masse
 \end{itemize}
+Les broches ayant chacunes une fonction particulière, il n'existe pas de multiprise permettant de joindre deux connecteurs mâle vers une femelle.
+Il faudrait donc fabriquer un boitier d'adaptation permettant de dévier les broches utiles, tout en préservant l'alimentation de la remorque et du matériel installé dessus.\\
+Voir figure \ref{alim}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=7cm]{assets/figures/Alimentation.drawio}
+    \caption{Boitier d'adaptation de l'alimentation \label{alim}}
+\end{figure}
 \newpage
 
 \section{Communication}
@@ -145,14 +151,14 @@ La visualisation du retour se fera naturellement via un écran. Les idées de ba
     \item Affichage via une page web locale.
 \end{itemize}
 \\
-Les problèmes de l'écran portable sont multiples, notamment l'alimentation, le câblage vers une source d'alimentation peut-être encombrante
+Les problèmes de l'écran portable sont multiples, notamment l'alimentation, le câblage vers une source d'alimentation peut-être encombrant
 et limiterait les mouvements/déplacements de l'utilisateur. De plus la connexion vers un réseau \Gls{wifi} local n'est pas garantie.\\
 L'idée de l'application mobile présente certains avantages, comme l'installation unique. L'opérateur n'aurait qu'à mettre l'application
 qu'une seul fois sur son téléphone portable pour accéder au retour vidéo (sous condition d'être connecté au réseau \Gls{wifi} local).
 Tout le monde serait alors équiper de son propre écran, petit, pratique et peu encombrant. Le problème majeur est la différence de système d'exploitation
 entre les téléphones portables. Le développement d'une application universelle est compliquée, il faudrait avoir une application par système grand public.
 De plus, l'installation d'une application non reconnu par Apple doit être téléversée directement à partir d'un ordinateur.\\
-L'affichage du retour vidéo semble être optimal. En plus de regrouper les avantages de l'application mobile, nous n'avons débarrassons des défauts.
+L'affichage du retour vidéo via une page locale semble être optimal. En plus de regrouper les avantages de l'application mobile, nous nous débarrassons des défauts.
 L'accès au lien de la page pourrait se faire via un QR code à scanner sur le boitier de commande.
 \textbf{L'affichage se fera via une page web locale.}
 
