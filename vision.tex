@@ -1,10 +1,44 @@
 \section{Tests préliminaires}
-\subsection{Conditions de test}
-\subsubsection{Matériel}
+Le but des tests préliminaires est de vérifier que les analyses effectuées dans la phase de recherche sont applicables et nous retournent
+des résultats exploitables. Ils permettent également de se rendre compte si le système imaginé lors de la sélection du matériel est en accord avec
+ce qui est réalisable.
+\subsection{Matériel}
+Au moment des tests, les élements suivants étaient à ma disposition :
+\begin{itemize}
+    \item 1x Rapsberry Pi 4b - 4Go de RAM.
+    \item 1x Pi caméra module 3 NoIR Wide.
+    \item 20x leds IR 830nm.
+    \item 20x leds IR 850nm.
+    \item 20x leds IR 880nm.
+    \item 1x morceau de route.
+    \item 1l. Huile de moteur neuf - 15W-40.
+\end{itemize}
 
-\subsubsection{Eclairage}
-\subsubsection{Capture}
-\subsubsection{Images}
+\subsection{Eclairage}
+L'éclairage utilisé dans le cadre des tests préliminaires consiste en deux rails de leds IR montées en ligne sur deux veroboards.
+Le montage a été effectué selon le schéma suivant:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/schema_leds1.png}
+    \caption{Eclairage de test - Schéma électrique de la rangée de led - Schéma modifié de: https://www.sonelec-musique.com/electronique_realisations_alim_led.html}
+\end{figure}
+Les veroboards sont pratiques à manipuler, il est possible se les tenir avec des étaux afin de faire varier les positions durant les tests. Une fois monté,
+le résultat est le suivant:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/rail_led1.jpg}
+    \caption{Eclairage de test - Rail de leds 1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{assets/figures/rail_led2.jpg}
+    \caption{Eclairage de test - Rail de leds 2}
+\end{figure}
+\subsection{Capture}
+La capture d'acquisition des images de tests préliminaires se fait via la caméra sélectionnée durant la phase de décision, un Rpi4 ainsi
+qu'un petit script configurant la caméra et enregistrant l'image.
+\subsection{Images}
 Vu depuis la caméra, nous avons la scène suivante:
 
 \begin{figure}[H]
@@ -23,8 +57,10 @@ laissant passer que les infrarouges. J'ai donc effectué les captures qui vont s
     \item Temps d'exposition: 5000[ns]. (déterminé expérimentalement avec plusieurs captures)
 \end{itemize}
 Avec ce setup, j'ai effectué plusieurs captures en faisant varier la position de l'éclairage par rapport à la tâche d'huile et la caméra.
-J'ai obtenu différents résultats, plus ou moins utilisables.\\
-Ci-dessous, un exemple d'éclairage orienté "contre" la caméra selon la figure suivante:\\
+J'ai obtenu différents résultats, plus ou moins utilisables.
+
+
+Ci-dessous, un exemple d'éclairage orienté "contre" la caméra selon la figure suivante:
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/eclairage_contre_camera.png}
@@ -69,9 +105,11 @@ Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route sel
     \caption{Capture de test - Eclairage perpendiculaire 3}
 \end{figure}
 On observe que la route diffuse, dans une moindre mesure, l'éclairage des leds IR, là ou l'huile semble absorber les rayonnements. On arrive
-assez facilement à différencier le clair de la route et le foncé de l'huile. La mise en place d'un software de détection est envisageable avec un éclairage basé sur ce schéma.
+assez facilement à différencier le clair de la route et le foncé de l'huile. La mise en place d'un software de détection est envisageable avec
+un éclairage basé sur ce schéma. A noté que les tests ont été effectué avec plusieurs gammes de leds (830nm, 850nm et 880nm), la différence
+sur le retour image n'est pas très grandes, mais les leds 850nm permettent de mieux différencier la route de l'huile.
 
-Faire un test avec l'éclairage derrière la caméra
+[Faire un test avec l'éclairage derrière la caméra]
 
 \section{Installation}
 \subsection{Eclairage}
