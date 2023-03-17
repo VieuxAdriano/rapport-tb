@@ -64,7 +64,7 @@ Ci-dessous, un exemple d'éclairage orienté "contre" la caméra selon la figure
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/eclairage_contre_camera.png}
-    \caption{Schéma de capture - Eclairage contre la camera}
+    \caption{Schéma de capture - Eclairage contre la camera \label{led_perp}}
 \end{figure}
 
 
@@ -92,7 +92,6 @@ Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route sel
     \includegraphics[width=13cm]{assets/figures/eclairage_perpendiculaire1.png}
     \caption{Capture de test - Eclairage perpendiculaire 1}
 \end{figure}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/eclairage_perpendiculaire2.png}
@@ -110,6 +109,44 @@ un éclairage basé sur ce schéma. A noté que les tests ont été effectué av
 sur le retour image n'est pas très grandes, mais les leds 850nm permettent de mieux différencier la route de l'huile.
 
 [Faire un test avec l'éclairage derrière la caméra]
+\subsection{Filtre du visible}
+J'ai effectué quelques tests supplémentaires après la réception des filtres ne laissant passer que l'infrarouge. Pour rappel, le filtre
+ne laisse passer que les ondes supérieures à 700nm, les rouges lointains seront encore visibles.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=13cm]{assets/figures/filtre.jpg}
+    \caption{Capture avec filtre - Installation}
+\end{figure}
+
+Pour constater l'efficacité du filtre, j'ai effectué 3 captures.
+\begin{itemize}
+    \item Une image simple.
+    \item Une image avec l'éclairage IR enclenché.
+    \item Une image avec l'éclairage IR enclenché selon la figure \ref{led_perp}.
+\end{itemize}
+On notera également que le filtre perturbe l'autofocus du capteur, la position de la lentille a donc été définie en dur dans le code de test.
+Les informations concernant ces réglages se trouvent au chapitre 5.2.3 de la documentation Picamera2 \cite{picamera2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/filtre_simple.png}
+    \caption{Capture avec filtre - Environnement simple}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/filtre_IR.png}
+    \caption{Capture avec filtre - Leds IR allumées}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/filtre_IR_huile.png}
+    \caption{Capture avec filtre - Leds IR selon figure \ref{led_perp}}
+\end{figure}
+On observe que la quasi totalité des éclairages de la pièce disparaissent de la capture,
+mettant en évidence la route et la trace d'huile au milieu de celle-ci. Il reste cependant les rayonnements solaires (visible sur la partie gauche des images)
+à gérer, le soleil émettant dans un large spectre, ceux-ci apparaissent dans l'image. L'emplacement du laboratoire ne permet pas de
+tester le filtre et le capteur sous un ensoleillement tel qu'on pourrait avoir en extérieur. De futurs tests sont nécessaires.
 
 \section{Installation}
 \subsection{Eclairage}
