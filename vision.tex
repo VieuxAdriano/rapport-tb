@@ -1,4 +1,4 @@
-\section{Tests préliminaires}
+\section{Tests préliminaires \label{test_vision}}
 Le but des tests préliminaires est de vérifier que les analyses effectuées dans la phase de recherche sont applicables et nous retournent
 des résultats exploitables. Ils permettent également de se rendre compte si le système imaginé lors de la sélection du matériel est en accord avec
 ce qui est réalisable.
@@ -105,10 +105,16 @@ Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route sel
 \end{figure}
 On observe que la route diffuse, dans une moindre mesure, l'éclairage des leds IR, là ou l'huile semble absorber les rayonnements. On arrive
 assez facilement à différencier le clair de la route et le foncé de l'huile. La mise en place d'un software de détection est envisageable avec
-un éclairage basé sur ce schéma. A noté que les tests ont été effectué avec plusieurs gammes de leds (830nm, 850nm et 880nm), la différence
+un éclairage basé sur ce schéma. A noter que les tests ont été effectués avec plusieurs gammes de leds (830nm, 850nm et 880nm), la différence
 sur le retour image n'est pas très grandes, mais les leds 850nm permettent de mieux différencier la route de l'huile.
-
-[Faire un test avec l'éclairage derrière la caméra]
+\newpage
+J'ai également tenté la configuration suivante:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/eclairage_dos.png}
+    \caption{Schéma de capture - Eclairage de dos}
+\end{figure}
+Mais, étant trop sombre, les images obtenues n'étaient pas utilisables.
 \subsection{Filtre du visible}
 J'ai effectué quelques tests supplémentaires après la réception des filtres ne laissant passer que l'infrarouge. Pour rappel, le filtre
 ne laisse passer que les ondes supérieures à 700nm, les rouges lointains seront encore visibles.
