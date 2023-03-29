@@ -66,12 +66,12 @@ La sélection de l'éclairage va dépendre des points suivants:
 \end{itemize}
 Le premier point s'est défini durant la phase de recherche, l'idéal serait d'avoir une source émettant une onde de 850 \si{\nano\metre}.
 
-Les deux points suivants sont liés, l'éclairage sera monté sur le timon et le but est d'éclairer le sol sur une largeur d'environ 160 \si{\centi\metre} (correspondant aux champ d'actions du semoir),
+Les deux points suivants sont liés, l'éclairage sera monté sur le timon et le but est d'éclairer le sol sur une largeur d'environ 150 \si{\centi\metre} (correspondant aux champ d'actions du semoir),
 c'est à dire sur une bande. Avec des leds montées en ligne, il n'est pas nécessaire qu'elles aient un grand angle de diffusion.
 
 Des leds trouvées sur le site de Mouser semblent correspondre à ces conditions \cite{ledIR}.
 
-Leur préparation se résumerait à une mise en bande (2x 80\si{\centi\metre}) et les alimenter.
+Leur préparation se résumerait à une mise en bande (2x 75\si{\centi\metre}) et les alimenter.
 
 
 \subsection{Caméra}
@@ -90,73 +90,81 @@ son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \s
     \includegraphics[height=7cm,angle=-90]{assets/figures/camera.png}
     \caption{Camera module 3 NoIR wide}
 \end{figure}
-
+\newpage
 \subsection{Système embarqué de traitement}
+L'unité de traitement doit respecter les contraintes suivantes:
 \begin{itemize}
     \item Peu encombrant.
-    \item Relativement puissant.
+    \item Suffisemment puissant pour traiter les images et agir.
     \item Communication WiFi en tant qu'émetteur.
     \item Compatible avec la caméra.
 \end{itemize}
-Rapsberry Pi 4.
+En faisant une recherche rapide, on se rend compte qu'il y a beaucoup d'options parmis les marques de nano ordinateur,
+et chacunes des marques ont une multitude de sous-modèle.
+\begin{itemize}
+    \item Rapsberry Pi.
+    \item Intel.
+    \item NanoPC.
+    \item LattePanda.
+    \item NVIDIA.
+    \item Et beaucoup d'autres...
+\end{itemize}
+De manière général, la commande de nano ordinateur est très compliquée actuellement (mars 2023), il faut compter plusieurs semaines voir plusieurs mois
+pour espérer recevoir quelque chose. Il est important de noter que j'effectue mon travail de Bachelor à temps plein, en 11 semaines consécutives.
+Je ne peux donc pas me permettre d'attendre autant de temps pour recevoir un élement.
 
+En m'informant sur le matériel disponible dans l'école, j'ai appris que le \Gls{reds} prêtait des Rapsberry Pi 4.
+J'ai donc basé ma sélection sur la disponibilité de l'élément et non pas sur ses capacités.
 
-\section{Système de commande}
-\subsection{Actionneurs de la télécommande}
+\textbf{Un Rapsberry Pi4 4Go sera utilisé pour la suite du projet.}
+
+Note: Le Rapsberry Pi 4 sera abrévié "\Gls{rpi4}" dans la suite du rapport.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{assets/figures/rpi4.png}
+    \caption{Rapsberry Pi4 4Go}
+\end{figure}
+
+\newpage
+\section{Système de commande - Actionnement de la télécommande}
 Les idées de base d'actionneurs permettant d'appuyer sur la télécommande sont les suivants:
-\begin{listage}
-    1. Vérins électriques.\\
-    2. Servomoteurs.\\
-    3. Moteurs pas à pas.
-\end{listage}
+\begin{itemize}
+    \item Vérins électriques.
+    \item Servomoteurs.
+    \item Moteurs pas à pas.
+    \item Aimants de levage.
+\end{itemize}
 
 Les vérins électriques ont l'avantages d'être facile à installer, il suffirait d'une plaque de support perforée au dessus de chaque bouton et d'y insérer
 les pièces à la profondeur souhaitée, puis de les actionner/rétracter pour appuyer ou non sur un bouton. Cependant, les vérins disponibles sur le marché semblent être surdimensionnés pour la tâche en question, les forces et
-consommation pour un fonctionnement normal sont très grand. Les prix sont également très élevé, il est difficile de trouver des pièces de moins de 100 CHF l'unité
+consommation pour un fonctionnement normal sont très grand. Les prix sont également très élevé, il est difficile de trouver des pièces de moins de 100 \Gls{chf} l'unité
 pour les dimensions désirées. De plus, les délais de livraison durant la période dédiée au développement de se projet sont relativements incertains pour se genre de pièce.
 
 L'idée, avec les servomoteurs, serait de les équiper d'un élement de préhension tangent à l'axe de rotation du moteur permettant de presser sur les boutons.
 Le pilotage d'un servomoteur se fait par PWM, nécessitant donc qu'une seule sortie par élements au niveau de la carte de commande. De plus, il est assez facile de
 trouver des servomoteurs avec des caractéristiques en phase avec le projet, c'est à dire d'un point de vu taille, force et consommation, et ce à des prix
-raisonnable (avoisinant les 5 à 10 CHF). L'installation sur un support est plus complexe que pour les vérins.
+raisonnable (avoisinant 10 \Gls{chf}). L'installation sur un support est plus complexe que pour les vérins.
 
 L'utilisation du moteur pas à pas serait similaires au servomoteur, c'est à dire avec un élement qui presse sur les boutons.
-Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix résonnable (avoisinnant 10 CHF). La commande d'un moteur pas à pas
-se fait usuellement via un pilote servant d'interface entre le moteur et la carte de commande. Il est nécessaire d'avoir une carte pilote par moteur (environ 10 CHF par unité).
+Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix résonnable (avoisinnant 10 \Gls{chf}). La commande d'un moteur pas à pas
+se fait usuellement via un pilote servant d'interface entre le moteur et la carte de commande. Il est nécessaire d'avoir une carte pilote par moteur (environ 10 \Gls{chf} par unité).
 L'installation sur un support est plus complexe que pour les vérins.
 
-Avec ces informations, en comparant prix, facilité d'acquisition, pilotage, caractéristique obtenable, délai de livraison, la solution du servomoteur semble être la plus
-appropriée.\textbf{Je vais donc baser la suite du développement avec des servomoteurs comme actionneurs de la télécommande.}
+Les aimants de levage, tout comme les vérins ont l'avantage d'être très simple à installer/disposer. Le prix varie suivant la taille, la pression et l'alimentation de l'aimant.
+Selon la force nécessaire à l'activation du bouton, le modèle qu'il faudrait utiliser coûte environ 20 \Gls{chf}. L'activation de l'aimant peut se faire via un relai dont le contrôle
+pourrait se faire via les pins I/O du \Gls{rpi4}.
 
-\subsection{Pilotage des actionneurs}
-La carte de commande servant à piloter les servomoteurs devra être capable de:
-\begin{listage}
-    1. Commander 6 servomoteurs simultanément.\\
-    2. Communiquer (reçevoir des informations) avec le boitier de traitement d'image.\\
-    3. Afficher un statut via un voyant (une led par exemple).
-\end{listage}
+Avec ces informations, en comparant prix, facilité d'acquisition, pilotage, caractéristiques obtenables, délai de livraison et facilité d'installation, la solution de l'aimant de levage semble être la plus
+appropriée. J'ai trouvé un aimant de levage avec les caractéristiques suivantes:
+\begin{itemize}
+    \item Tension de fonctionnement: 12 \si{\volt}
+    \item Puissance nominale: 7 \si{\watt}
+    \item Longueur de déploiement: 10 \si{\milli\metre}
+    \item Force en fin de course: 11 \si {\newton}
+\end{itemize}
 
-Plusieurs possibilités se présentent , parmis la famille des Arduinos:
-\begin{table}[H]
-    \begin{center}
-        \caption{Liste de cartes embarqueés}
-        \begin{tabular}{|l|l|l|l|}
-            Cartes                & Sortie PWM & Prix moyen   & Module \Gls{wifi} intégré? \\ \hline
-            Arduino Nano          & 6          & 20 \Gls{chf} & Non                        \\
-            Arduino Micro         & 7          & 25 \Gls{chf} & Non                        \\
-            Arduino Uno           & 6          & 30 \Gls{chf} & Non                        \\
-            Arduino Mega          & 15         & 40 \Gls{chf} & Non                        \\
-            Arduino MKR WiFi 1010 & 10         & 35 \Gls{chf} & Oui
-        \end{tabular}
-    \end{center}
-\end{table}\\
-
-Les 4 premières cartes présentent cochent 2 parmis les 3 prérequis de sélection. Ce qui les différentie c'est majoritairement le coût, l'encombrement et la vitesse de travail.
-Au vu de la simplicité des tâches, un Nano ou Micro serait suffisant. En imaginant que la communication avec l'unité de traitement d'image se fasse via un réseau \Gls{wifi} local,
-il faudrait ajouter un module spécifique permettant la connexion, par exemple l'ESP8266.\\
-En plus de pouvoir commander les servomoteurs et d'afficher un statut, le MKR WiFi 1010 possède un module \Gls{wifi} préintégré.
-Les prix entre les cartes avec l'ajout d'un module et le MKR WiFi 1010 sont plus ou moins semblable. Ce dernier offre l'avantage d'être compacte et de limiter le câblage.
-\textbf{Je vais donc baser la suite du développement avec l'Arduino MKR WiFi 1010.} \cite{MKR}
+\textbf{La suite du développement se fera avec des aimants de levage comme actionneurs de la télécommande.}
 \section{Retour vidéo}
 Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbure doivent être visible par le copilote.
 La visualisation du retour se fera naturellement via un écran. Les idées de bases sont les suivantes:
@@ -187,12 +195,33 @@ L'accès au lien de la page pourrait se faire via un QR code à scanner sur le b
         \begin{tabular}{|c|l|}
             Elements                  & Solutions                         \\ \hline
             Communication             & Filaire + Réseau \Gls{wifi} Local \\
+            Eclairage                 & Leds IR 850 \si{\nano\metre}      \\
             Caméra                    & Rpi module 3 NoIR Wide            \\
             Traitement d'image        & Rapsberry Pi 4                    \\
-            Actionnement télécommande & Servomoteurs                      \\
-            Commande actionneurs      & Arduino MKR WiFi 1010 \cite{MKR}  \\
+            Actionnement télécommande & Aimants de levage                 \\
             Affichage pour copilote   & Page web local                    \\
         \end{tabular}
     \end{center}
 \end{table}
+\newpage
+\section{Bilan de consommation}
+Dans le but d'installer le système sur la remorque, il est important d'avoir une idée de la consommation totale du système afin de dimentionner
+un fusible à l'entrée du boitier.
 
+\begin{table}[H]
+    \begin{center}
+        \caption{Table - Bilan de consommation}
+        \begin{tabular}{|c|c|c|c|}
+            Elements            & Conso. par unité   & Quantité & Conso. totale        \\ \hline
+            Camera + \Gls{rpi4} & 15 \si{\watt}      & 1        & 15    \si{\watt}     \\
+            Leds IR             & 3 \si{\milli\watt} & 100      & 300 \si{\milli\watt} \\
+            Aimants de levage   & 7 \si{\watt}       & 6*       & 42 \si{\watt}        \\
+            Total               & -                  & -        & 57.3 \si{\watt}      \\
+        \end{tabular}
+    \end{center}
+
+    *Normalement, seul 3 aimants de levage peuvent être actifs simultanément.
+\end{table}
+
+Sachant que l'alimentation depuis la remorque est de 12 \si{\volt}, on en déduit que le courant sera de \(I = P/U = 57.3/12 = 4.775 \si{\ampere} \).
+L'utilisation d'un fusible de 5 \si{\ampere} semble être une bonne option, on en trouve très facilement sur le marché à très bas prix avec un support adapté.

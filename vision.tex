@@ -172,9 +172,33 @@ J'envisage de faire fabriquer le rails de leds sur les principes suivants:
     \item Tube de protection à enfiler lors des transports.
 \end{enumerate}
 \subsubsection{Veroboard}
-+ plan d'implantation
+La plaque de veroboard sert de conducteur permettant aux leds d'être alimentées. L'objectif est d'avoir deux bandes de leds de 75cm de part et d'autre
+du timon. Je n'ai pas trouvé de veroboard faisant cette largeur, j'ai donc décidé d'utiliser les plaques disponibles au FabLab de l'HEIG et d'en faire un assemblage.
+Le but est de transformer 5 plaques de 6.6cm x 15cm en 10 plaques de 3.3cm x 15cm afin de couvrir la largeur requise avec un minimum d'épaisseur.
+Chaque plaque serait reliée à la suivante via un connecteur afin de transmettre l'alimentation.
 
-+ image résultat
+L'implantation sur veroboard se ferait selon le plan suivant:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm, trim=0 0 3cm 1cm, clip]{assets/figures/plan_implantation_rail_led.pdf}
+    \caption{Plan d'implantation - Rail de Led}
+\end{figure}
+
+Notons que la chute de tension aux bornes des leds est de 1.3 V $\pm$ 0.1 V, celle-ci peut légérement varier d'une led à l'autre. C'est
+pourquoi il est important de mettre une résistance avant chaque led, de manière à ce que celle-ci gère le potentiel surplus de tension.
+De plus, cela permet d'avoir un contrôle sur le courant traversant la led et donc sur l'intensité de l'éclairage. Durant les tests préliminaires,
+le courant traversant les leds étaient de 3,5 \si{\milli\A}, l'intensité lumineuse était bonne, je décide donc de m'y tenir.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{assets/figures/schema_led_res.png}
+    \caption{Schéma électrique - Choix de résistance}
+\end{figure}
+
+Sachant \(R = U / I\), on se retrouve avec \(R = 0.2 / 0.0035 = 57.1 \si{\ohm} \) (Arrondi à 56\si{\ohm} dans la gamme de résistance E12).
+
+    [Ajouter photo de deux barettes]
+
 \subsubsection{Rails}
 \subsubsection{Fixation}
 \subsubsection{Protection}
