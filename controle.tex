@@ -30,12 +30,33 @@ une longueur suffisante pour atteindre son pic de force.
             Préhenseur 11N & OUI-NON \\
         \end{tabular}
     \end{center}
-\end{table}\\
+\end{table}
 
 \section{Supports}
 
 \subsection{Support pour jeu de préhenseur magnétique}
 \subsection{Support de la télécommande}
+
+\section{Mesure de la vitesse}
+Après que les traces d'hydrocarbures aient été détéctées sur la route, il faut savoir quand ouvrir la section du semoir au bon moment. La distance entre la zone de détection et le semoir étant connue,
+il est nécessaire de mesurer la vitesse afin de déterminer le temps après lequel il faut agir sur les ouvertures.
+\subsection{Concept de mesure de vitesse}
+Plusieurs solutions ont été envisagée:
+
+\begin{itemize}
+    \item Mesure par vision: L'idée serait d'utiliser l'image captée par la caméra et de la comparer avec l'image suivante. Sachant le temps entre deux images,
+          la différence de position serait déterminer avec une correlation. \underline{L'avantage} premier est que j'ai déjà la caméra, il n'y aurait pas besoin d'ajouter d'autres compostants.
+          \underline{Les inconvénients} sont les suivants, le filtre limitant les rayonnements visibles pourrait être problèmatique pour faire des corrélations, de plus, le temps de calcul nécessaire
+          à une correlation est trop grand, ce serait trop difficile de concilier efficacité de la cadence de traitement et mesure de la vitesse.
+    \item Mesure par radar doppler: Vitesse radial, nécessite un obstacle, sur route peu adatpé
+    \item Mesure par capteur à effet Hall. L'idée est de fixer des aimants sur l'intérieur d'une des roues de la remorques de manière à connaître leurs placements.
+          Ainsi, lorsque la roue est en mouvement, les aimants passent devant le capteur. Sachant les dimensions du pneus de la remorque, il serait possible de déterminer la vitesse en fonction de la fréquence d'activation du capteur.
+          \underline{Avantages :} Peu coûteux, facile à mettre en place, nécessite seulement de configurer une routine d'interruption sur le \Gls{rpi4}. \underline{L'inconvénient} majeur est la difficulté à installer le tout.
+    \item Mesure via une roue munie d'un tachymètre: L'idée consiste en l'ajout d'une roue
+          inconvénients:
+\end{itemize}
+
+\subsection{Installation sur le semoir}
 
 \section{Programme}
 \subsection{Pilotage des vérins}

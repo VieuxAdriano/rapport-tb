@@ -115,6 +115,7 @@ J'ai également tenté la configuration suivante:
     \caption{Schéma de capture - Eclairage de dos}
 \end{figure}
 Mais, étant trop sombre, les images obtenues n'étaient pas utilisables.
+\newpage
 \subsection{Filtre du visible}
 J'ai effectué quelques tests supplémentaires après la réception des filtres ne laissant passer que l'infrarouge. Pour rappel, le filtre
 ne laisse passer que les ondes supérieures à 700nm, les rouges lointains seront encore visibles.
@@ -197,16 +198,36 @@ le courant traversant les leds étaient de 3,5 \si{\milli\A}, l'intensité lumin
 
 Sachant \(R = U / I\), on se retrouve avec \(R = 0.2 / 0.0035 = 57.1 \si{\ohm} \) (Arrondi à 56\si{\ohm} dans la gamme de résistance E12).
 
-    [Ajouter photo de deux barettes]
-
 \subsubsection{Rails}
-\subsubsection{Fixation}
-\subsubsection{Protection}
-\subsection{Caméra}
+Les veroboards ont été placés sur deux profilés plats en aluminium perçées et équipées d'entretoises de manières à accueillir le tout. Il suffit de poser les veroboards,
+les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une carte à l'autre. En cas de panne, le remplacement de la carte problèmatique est très rapide.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{assets/figures/rail_alu_led.jpg}
+    \caption{Assemblage - Rail led sur profilé plat}
+\end{figure}
+
+On notera qu'un second élement en aluminium a été vissé perpendiculairement au premier de manière à limiter les vibrations sur le rail d'éclairage.
+
+\subsection{Caméra}
+Dans le but d'avoir la caméra le plus centré possible, la caméra ...
 \section{Programme}
 \subsection{Librairies}
 indiquer les pip install à faire et toute les lignes pour préformater le rpi4
+\subsection{Capture d'images de références}
+Le traitement d'image permettant de mettre en valeur et détecter les hydrocarbures nécessite des images de références ayant été capturées dans des conditions précises et avec des paramètres de caméra maîtrisée.
+
+Le programme de capture d'image de références fera plusieurs centaines de capture de la même zone à observer en faisant varier les paramètres suivants:
+\begin{itemize}
+    \item Temps d'exposition
+    \item Gain analogique
+    \item Balance des blancs
+\end{itemize}
+
+Le programme \underline{cap\_img\_ref.py} (annexe [faire ref]) effectue les changements de paramètres et capture 3 images par configuration.
+
+(D'après la documentation de la caméra, l'ajustement des paramètres s'effectue en 3 frames maximum.)
 \subsection{Traitement de l'image}
 \subsubsection{Structure du programme}
 UML ou séquence de traitement

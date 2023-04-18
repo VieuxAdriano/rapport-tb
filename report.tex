@@ -5,6 +5,8 @@
 ]{heig-tb}
 
 \usepackage[nooldvoltagedirection,european,americaninductors]{circuitikz}
+\usepackage{pdfpages}
+\usepackage{lscape}
 
 \signature{avieux.svg} 
 
@@ -57,7 +59,7 @@
 \mainmatter
 \chapter{Introduction}
 \input{introduction.tex}
-\input{examples.tex}
+%\input{examples.tex}
 
 \chapter{Analyse de l'existant}
 \label{chap:exi}
@@ -69,14 +71,14 @@
 \chapter{Sélection du matériel et technologie}
 \input{selection.tex}
 
-\chapter{Installation sur le semoir}
-\input{installation.tex}
-
 \chapter{Système de vision}
 \input{vision.tex}
 
 \chapter{Contrôle de la télécommande}
 \input{controle.tex}
+
+\chapter{Installation sur le semoir}
+\input{installation.tex}
 
 \chapter{Retour vidéo}
 \input{monitoring.tex}
@@ -108,6 +110,19 @@ Les annexes contiennent généralement :
 \end{itemize}
 \section{Sous section}
 \lipsum[1]
+
+\chapter{Datasheets}
+\section{Led infrarouge 850nm}
+\includepdf[page=-]{assets/pdf/datasheet_led.pdf}
+\section{PiCamera module 3 NOiR Wide}
+\includepdf[page=-]{assets/pdf/datasheet_camera.pdf}
+
+\chapter{Programmes}
+\section{Capture images de références}
+\begin{listing}[h]
+    \inputminted{python}{assets/code/cap_img_ref.py}
+    \caption{Génération d'un diagramme de Bode \label{python}}
+\end{listing}
 %%fi
 
 \let\cleardoublepage\clearpage
@@ -119,5 +134,5 @@ Les annexes contiennent généralement :
 \printindex
 
 % Le colophon est le dernier élément d'un document qui contient des notes de l'auteur concernant la mise en page et l'édition du document : il est parfaitement optionnel.
-\input{colophon.tex}
+%\input{colophon.tex}
 \end{document}

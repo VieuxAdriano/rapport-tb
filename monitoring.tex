@@ -13,7 +13,7 @@ hébergé par le Rapsberry Pi. Les étapes pour y arriver sont les suivantes:
     \item Y remplacer le code du listing \ref{dnsmasq}, sauver + quitter: ctrl+O, puis ctrl+X.
     \item Redémarrer le Rpi4 avec: \textbf{sudo reboot}.
     \item Couper la connexion réseau avec: \textbf{sudo ifdown wlan0}.
-    \item Accéder à la liste des réseaux avec: \textbf{sudo wpa\char`_cli -i wlan0 list\char`_networks}, puis saisir le réseau avec: \textbf{sudo wpa\char`_cli -i wlan0 select\char`_network 1} (exemple figure..)
+    \item Accéder à la liste des réseaux avec: \textbf{sudo wpa\char`_cli -i wlan0 list\char`_networks}, puis saisir le réseau avec: \textbf{sudo wpa\char`_cli -i wlan0 select\char`_network 1} (exemple figure \ref{networks_list})
     \item Sauver la nouvelle configuration avec \textbf{sudo wpa\char`_cli -i wlan0 save\char`_config}.
     \item Relancer la connexion réseau avec: \textbf{sudo ifup \underline{wlan0=ap0}}.
 \end{enumerate}
@@ -32,7 +32,16 @@ hébergé par le Rapsberry Pi. Les étapes pour y arriver sont les suivantes:
     \caption{Configuration dnsmasq \label{dnsmasq}}
 \end{listing}
 
-Avec l'ajout de ces lignes, le Rpi4 emet un réseau local dès son démarrage. Il est possible de s'y connecter avec n'importe quel
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/network_list.PNG}
+    \caption{Liste de networks \label{networks_list}}
+\end{figure}
+
+Avec l'ajout de ces lignes, le Rpi4 emet un réseau local, pour que l'émission se fasse dès le démarrage de la carte,
+il faut ouvrir le fichier suivant avec : \textbf{sudo nano /home/tb/.bashr} et y ajouter les lignes de codes des étapes \textbf{11 et 14}.
+
+Il est possible de s'y connecter avec n'importe quel
 type d'appareil. Le nom du réseau et le mot de passe sont paramétrables, actuellement, c'est:
 \begin{itemize}
     \item Nom du réseau: \textbf{SemoirSDIS}
@@ -48,12 +57,14 @@ type d'appareil. Le nom du réseau et le mot de passe sont paramétrables, actue
 
 \section{Affichage}
 Il existe des codes sources disponibles en ligne permettant d'afficher le retour caméra basé sur le package Picamera2 \cite{picamera2}.
-Je me suis inspiré de celui-ci pour mon affichage: \cite{code_camera}.\\
+Je me suis inspiré de celui-ci pour mon affichage: \cite{code_camera}.
+
 L'utilisation de \textbf{Picamera2} nécessite l'installation de dépendances:
 \begin{itemize}
     \item \textbf{sudo apt-get install libatlas-base-dev}.
 \end{itemize}
-\textbf{Mettre screenshot du rendu sur natel/pc}\\
+\textbf{Mettre screenshot du rendu sur natel/pc}
+
 Mettre le code source en annexe.
 \section{Accès}
 L'accès au retour vidéo se fait via une page locale dont l'accès nécessite d'être connecté au WiFi émis par le Rpi4.
