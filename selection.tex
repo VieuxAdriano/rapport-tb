@@ -11,7 +11,7 @@ Ce qui nous intéresse:
     \item Broche 9  : 12 [V]
     \item Broche 13 : Masse
 \end{itemize}
-Les broches ayant chacunes une fonction particulière, il n'existe pas de multiprise permettant de joindre deux connecteurs mâle vers une femelle.
+Les broches ayant chacune une fonction particulière, il n'existe pas de multiprise permettant de joindre deux connecteurs mâle vers une femelle.
 Il faudrait donc fabriquer un boitier d'adaptation permettant de dévier les broches utiles, tout en préservant l'alimentation de la remorque et du matériel installé dessus.
 
 
@@ -30,9 +30,9 @@ Il est important de se rappeler que leurs emplacements seront les suivants:
 
 \begin{table}[h]
     \begin{center}
-        \caption{Liste des élements et emplacements}
+        \caption{Liste des éléments et emplacements}
         \begin{tabular}{|c|l|}
-            Elements                        & Emplacement                \\ \hline
+            Eléments                        & Emplacement                \\ \hline
             Caméra et boitier de traitement & Support de la remorque     \\
             Eclairage                       & Timon                      \\
             Actionnement de la télécommande & Support de la remorque     \\
@@ -41,12 +41,12 @@ Il est important de se rappeler que leurs emplacements seront les suivants:
     \end{center}
 \end{table}
 
-Dans notre cas de figure, les élements sont concentrés sur la remorque et dans le véhicule tractant. La communication cablée est possible
+Dans notre cas de figure, les éléments sont concentrés sur la remorque et dans le véhicule tractant. La communication câblée est possible
 entre la caméra, le boitier, l'actionnement de la télécommande et éventuellement l'éclairage si celui-ci à besoin d'être contrôlé spécifiquement.
 En ce qui concerne le retour vidéo, il se trouvera principalement dans l'habitacle du véhicule, mais pourrait également être emporté autour du véhicule,
 dans ce cas, la connexion filaire n'est pas envisageable.
 
-Parmis les connexions sans fil:
+Parmi les connexions sans fil:
 \begin{itemize}
     \item Via une connexion Bluetooth.
     \item Via un réseau \Gls{wifi} local.
@@ -82,7 +82,7 @@ La caméra à choisir doit remplir les critères suivants:
     \item Champ de vision suffisant pour observer la largeur de la route.
 \end{itemize}
 
-La caméra Module 3 "NoIR - Wide" de Rapsberry Pi \cite{camera} semble répondre aux critères. Avec une mise au point à partir de 5cm vers l'infini,
+La caméra Module 3 "NoIR - Wide" de Raspberry Pi \cite{camera} semble répondre aux critères. Avec une mise au point à partir de 5cm vers l'infini,
 une résolution de 11.9 mégapixels (4608x2592) et d'un champ de vision de \ang{120}, elle offre une image nette et très détaillée avec beaucoup de liberté sur
 son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \si{\nano\metre}.
 \begin{figure}[H]
@@ -95,14 +95,14 @@ son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \s
 L'unité de traitement doit respecter les contraintes suivantes:
 \begin{itemize}
     \item Peu encombrant.
-    \item Suffisemment puissant pour traiter les images et agir.
+    \item Suffisamment puissant pour traiter les images et agir.
     \item Communication WiFi en tant qu'émetteur.
     \item Compatible avec la caméra.
 \end{itemize}
-En faisant une recherche rapide, on se rend compte qu'il y a beaucoup d'options parmis les marques de nano ordinateur,
-et chacunes des marques ont une multitude de sous-modèle.
+En faisant une recherche rapide, on se rend compte qu'il y a beaucoup d'options parmi les marques de nano ordinateur,
+et chacune des marques ont une multitude de sous-modèle.
 \begin{itemize}
-    \item Rapsberry Pi.
+    \item Raspberry Pi.
     \item Intel.
     \item NanoPC.
     \item LattePanda.
@@ -111,19 +111,19 @@ et chacunes des marques ont une multitude de sous-modèle.
 \end{itemize}
 De manière général, la commande de nano ordinateur est très compliquée actuellement (mars 2023), il faut compter plusieurs semaines voir plusieurs mois
 pour espérer recevoir quelque chose. Il est important de noter que j'effectue mon travail de Bachelor à temps plein, en 11 semaines consécutives.
-Je ne peux donc pas me permettre d'attendre autant de temps pour recevoir un élement.
+Je ne peux donc pas me permettre d'attendre autant de temps pour recevoir un élément.
 
-En m'informant sur le matériel disponible dans l'école, j'ai appris que le \Gls{reds} prêtait des Rapsberry Pi 4.
+En m'informant sur le matériel disponible dans l'école, j'ai appris que le \Gls{reds} prêtait des Raspberry Pi 4.
 J'ai donc basé ma sélection sur la disponibilité de l'élément et non pas sur ses capacités.
 
-\textbf{Un Rapsberry Pi4 4Go sera utilisé pour la suite du projet.}
+\textbf{Un Raspberry Pi4 4Go sera utilisé pour la suite du projet.}
 
-Note: Le Rapsberry Pi 4 sera abrévié "\Gls{rpi4}" dans la suite du rapport.
+Note: Le Raspberry Pi 4 sera abrévié "\Gls{rpi4}" dans la suite du rapport.
 
 \begin{figure}[H]
     \centering
     \includegraphics[height=7cm]{assets/figures/rpi4.png}
-    \caption{Rapsberry Pi4 4Go}
+    \caption{Raspberry Pi4 4Go}
 \end{figure}
 
 \newpage
@@ -136,18 +136,18 @@ Les idées de base d'actionneurs permettant d'appuyer sur la télécommande sont
     \item Aimants de levage.
 \end{itemize}
 
-Les vérins électriques ont l'avantages d'être facile à installer, il suffirait d'une plaque de support perforée au dessus de chaque bouton et d'y insérer
+Les vérins électriques ont l'avantage d'être facile à installer, il suffirait d'une plaque de support perforée au dessus de chaque bouton et d'y insérer
 les pièces à la profondeur souhaitée, puis de les actionner/rétracter pour appuyer ou non sur un bouton. Cependant, les vérins disponibles sur le marché semblent être surdimensionnés pour la tâche en question, les forces et
 consommation pour un fonctionnement normal sont très grand. Les prix sont également très élevé, il est difficile de trouver des pièces de moins de 100 \Gls{chf} l'unité
-pour les dimensions désirées. De plus, les délais de livraison durant la période dédiée au développement de se projet sont relativements incertains pour se genre de pièce.
+pour les dimensions désirées. De plus, les délais de livraison durant la période dédiée au développement de se projet sont relativement incertains pour se genre de pièce.
 
-L'idée, avec les servomoteurs, serait de les équiper d'un élement de préhension tangent à l'axe de rotation du moteur permettant de presser sur les boutons.
-Le pilotage d'un servomoteur se fait par PWM, nécessitant donc qu'une seule sortie par élements au niveau de la carte de commande. De plus, il est assez facile de
+L'idée, avec les servomoteurs, serait de les équiper d'un élément de préhension tangent à l'axe de rotation du moteur permettant de presser sur les boutons.
+Le pilotage d'un servomoteur se fait par PWM, nécessitant donc qu'une seule sortie par éléments au niveau de la carte de commande. De plus, il est assez facile de
 trouver des servomoteurs avec des caractéristiques en phase avec le projet, c'est à dire d'un point de vu taille, force et consommation, et ce à des prix
 raisonnable (avoisinant 10 \Gls{chf}). L'installation sur un support est plus complexe que pour les vérins.
 
-L'utilisation du moteur pas à pas serait similaires au servomoteur, c'est à dire avec un élement qui presse sur les boutons.
-Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix résonnable (avoisinnant 10 \Gls{chf}). La commande d'un moteur pas à pas
+L'utilisation du moteur pas à pas serait similaires au servomoteur, c'est à dire avec un élément qui presse sur les boutons.
+Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix raisonnable (avoisinant 10 \Gls{chf}). La commande d'un moteur pas à pas
 se fait usuellement via un pilote servant d'interface entre le moteur et la carte de commande. Il est nécessaire d'avoir une carte pilote par moteur (environ 10 \Gls{chf} par unité).
 L'installation sur un support est plus complexe que pour les vérins.
 
@@ -193,11 +193,11 @@ L'accès au lien de la page pourrait se faire via un QR code à scanner sur le b
     \begin{center}
         \caption{Table de résumé des décisions}
         \begin{tabular}{|c|l|}
-            Elements                  & Solutions                         \\ \hline
+            Eléments                  & Solutions                         \\ \hline
             Communication             & Filaire + Réseau \Gls{wifi} Local \\
             Eclairage                 & Leds IR 850 \si{\nano\metre}      \\
             Caméra                    & Rpi module 3 NoIR Wide            \\
-            Traitement d'image        & Rapsberry Pi 4                    \\
+            Traitement d'image        & Raspberry Pi 4                    \\
             Actionnement télécommande & Aimants de levage                 \\
             Affichage pour copilote   & Page web local                    \\
         \end{tabular}
@@ -205,14 +205,14 @@ L'accès au lien de la page pourrait se faire via un QR code à scanner sur le b
 \end{table}
 \newpage
 \section{Bilan de consommation}
-Dans le but d'installer le système sur la remorque, il est important d'avoir une idée de la consommation totale du système afin de dimentionner
+Dans le but d'installer le système sur la remorque, il est important d'avoir une idée de la consommation totale du système afin de dimensionner
 un fusible à l'entrée du boitier.
 
 \begin{table}[H]
     \begin{center}
         \caption{Table - Bilan de consommation}
         \begin{tabular}{|c|c|c|c|}
-            Elements            & Conso. par unité   & Quantité & Conso. totale        \\ \hline
+            Eléments            & Conso. par unité   & Quantité & Conso. totale        \\ \hline
             Camera + \Gls{rpi4} & 15 \si{\watt}      & 1        & 15    \si{\watt}     \\
             Leds IR             & 3 \si{\milli\watt} & 100      & 300 \si{\milli\watt} \\
             Aimants de levage   & 7 \si{\watt}       & 6*       & 42 \si{\watt}        \\

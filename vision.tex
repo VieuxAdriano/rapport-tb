@@ -3,9 +3,9 @@ Le but des tests préliminaires est de vérifier que les analyses effectuées da
 des résultats exploitables. Ils permettent également de se rendre compte si le système imaginé lors de la sélection du matériel est en accord avec
 ce qui est réalisable.
 \subsection{Matériel}
-Au moment des tests, les élements suivants étaient à ma disposition :
+Au moment des tests, les éléments suivants étaient à ma disposition :
 \begin{itemize}
-    \item 1x Rapsberry Pi 4b - 4Go de RAM.
+    \item 1x Raspberry Pi 4b - 4Go de RAM.
     \item 1x Pi caméra module 3 NoIR Wide.
     \item 20x leds IR 830nm.
     \item 20x leds IR 850nm.
@@ -47,7 +47,7 @@ Vu depuis la caméra, nous avons la scène suivante:
     \caption{Capture de test - Vue de la scène en couleur}
 \end{figure}
 
-Au moment d'effectuer les tests de sensibilités aux IR, tout le matériel n'était pas encore arrivé, notement le filtre de l'objectif ne
+Au moment d'effectuer les tests de sensibilités aux IR, tout le matériel n'était pas encore arrivé, notamment le filtre de l'objectif ne
 laissant passer que les infrarouges. J'ai donc effectué les captures qui vont suivre dans les conditions suivantes:
 \begin{itemize}
     \item Lumières éteintes dans la pièce.
@@ -167,9 +167,9 @@ en bande, avec des leds IR émettant à 850nm. De plus, il faudrait que le syst�
 \end{itemize}
 J'envisage de faire fabriquer le rails de leds sur les principes suivants:
 \begin{enumerate}
-    \item Element solide sur lequel braser les leds (veroboard).
+    \item Elément solide sur lequel braser les leds (veroboard).
     \item Structure solide sur lequel fixer les veroboards (rail).
-    \item Element de fixation permettant un repliage.
+    \item Elément de fixation permettant un repliage.
     \item Tube de protection à enfiler lors des transports.
 \end{enumerate}
 \subsubsection{Veroboard}
@@ -185,7 +185,7 @@ L'implantation sur veroboard se ferait selon le plan suivant:
     \caption{Plan d'implantation - Rail de Led}
 \end{figure}
 
-Notons que la chute de tension aux bornes des leds est de 1.3 V $\pm$ 0.1 V, celle-ci peut légérement varier d'une led à l'autre. C'est
+Notons que la chute de tension aux bornes des leds est de 1.3 V $\pm$ 0.1 V, celle-ci peut légèrement varier d'une led à l'autre. C'est
 pourquoi il est important de mettre une résistance avant chaque led, de manière à ce que celle-ci gère le potentiel surplus de tension.
 De plus, cela permet d'avoir un contrôle sur le courant traversant la led et donc sur l'intensité de l'éclairage. Durant les tests préliminaires,
 le courant traversant les leds étaient de 3,5 \si{\milli\A}, l'intensité lumineuse était bonne, je décide donc de m'y tenir.
@@ -199,8 +199,8 @@ le courant traversant les leds étaient de 3,5 \si{\milli\A}, l'intensité lumin
 Sachant \(R = U / I\), on se retrouve avec \(R = 0.2 / 0.0035 = 57.1 \si{\ohm} \) (Arrondi à 56\si{\ohm} dans la gamme de résistance E12).
 
 \subsubsection{Rails}
-Les veroboards ont été placés sur deux profilés plats en aluminium perçées et équipées d'entretoises de manières à accueillir le tout. Il suffit de poser les veroboards,
-les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une carte à l'autre. En cas de panne, le remplacement de la carte problèmatique est très rapide.
+Les veroboards ont été placés sur deux profilés plats en aluminium percées et équipées d'entretoises de manières à accueillir le tout. Il suffit de poser les veroboards,
+les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une carte à l'autre. En cas de panne, le remplacement de la carte problématique est très rapide.
 
 \begin{figure}[H]
     \centering
@@ -208,7 +208,7 @@ les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une
     \caption{Assemblage - Rail led sur profilé plat}
 \end{figure}
 
-On notera qu'un second élement en aluminium a été vissé perpendiculairement au premier de manière à limiter les vibrations sur le rail d'éclairage.
+On notera qu'un second élément en aluminium a été vissé perpendiculairement au premier de manière à limiter les vibrations sur le rail d'éclairage.
 
 \subsection{Caméra}
 Dans le but d'avoir la caméra le plus centré possible, la caméra ...
@@ -216,6 +216,7 @@ Dans le but d'avoir la caméra le plus centré possible, la caméra ...
 \subsection{Librairies}
 indiquer les pip install à faire et toute les lignes pour préformater le rpi4
 \subsection{Capture d'images de références}
+\subsubsection{Paramètres}
 Le traitement d'image permettant de mettre en valeur et détecter les hydrocarbures nécessite des images de références ayant été capturées dans des conditions précises et avec des paramètres de caméra maîtrisée.
 
 Le programme de capture d'image de références fera plusieurs centaines de capture de la même zone à observer en faisant varier les paramètres suivants:
@@ -228,6 +229,39 @@ Le programme de capture d'image de références fera plusieurs centaines de capt
 Le programme \underline{cap\_img\_ref.py} (annexe [faire ref]) effectue les changements de paramètres et capture 3 images par configuration.
 
 (D'après la documentation de la caméra, l'ajustement des paramètres s'effectue en 3 frames maximum.)
+Au terme des essais, la configuration idéal est la suivante:
+
+\begin{table}[H]
+    \begin{center}
+        \caption{Table - Configuration caméra}
+        \begin{tabular}{|c|c|}
+            Elément              & Valeurs                \\ \hline
+            Temps d'exposition   & 500 \si{\milli\second} \\
+            Gain analogique      & 4.0                    \\
+            Balance des blancs R & 0.7                    \\
+            Balance des blancs B & 1.5                    \\
+        \end{tabular}
+    \end{center}
+\end{table}
+
+Cet configuration permet de..
+\subsubsection{Résultats}
+Une première séance de capture directement m'a permis d'effectuer des captures à l'aide du code mentionné précédemment: \underline{cap\_img\_ref.py}. Cependant, j'ai rencontré un problème, les captures sont floues, laissant penser que la mise au point est mal réglée.
+
+METTRE UNE OU DEUX IMAGE DE LA SEANCE
+
+La librairie Picamera2 \cite{picamera2} comprend une méthode qui règle la position de la lentille en fonction de la distance souhaitée pour la mise au point. La méthode a été testée en laboratoire et fonctionnait très bien. Durant la séance de capture,
+la mise au point était définie pour observer les éléments à 90 \si{\centi\meter} de l'objectif.
+
+En reproduisant le problème en laboratoire, j'ai compris que c'est la vitre de protection qui pose problème, en la retirant ou simplement en mettant de la distance entre la vitre et l'objectif, l'image redevient nette.
+
+J'estime donc qu'il y a plusieurs solutions qui s'offrent à moi.
+\begin{enumerate}
+    \item Jouer avec le paramètre du focus et trouver une valeur pour laquelle on a une image nette derrière la vitre.
+    \item Revoir le placement de la caméra dans le boitier de manière à ne pas coller l'objectif à la vitre.
+    \item
+\end{enumerate}
+
 \subsection{Traitement de l'image}
 \subsubsection{Structure du programme}
 UML ou séquence de traitement

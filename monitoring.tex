@@ -1,8 +1,8 @@
 \section{Communication}
-Il a été décidé durant la phase de recherche que l'affichage se fera via un écran "volant" qui recevera les images via un réseau WiFi local
-hébergé par le Rapsberry Pi. Les étapes pour y arriver sont les suivantes:
+Il a été décidé durant la phase de recherche que l'affichage se fera via un écran "volant" qui recevra les images via un réseau WiFi local
+hébergé par le Raspberry Pi. Les étapes pour y arriver sont les suivantes:
 \begin{enumerate}
-    \item Flasher avec l'OS Rapsberry (en utilisant Rapsberry imager ou BalenaCloud).
+    \item Flasher avec l'OS Raspberry (en utilisant Raspberry imager ou BalenaCloud).
     \item Être connecté à internet.
     \item Télécharger le package 'dnsmasq': \textbf{sudo apt-get install dnsmasq}.
     \item Atteindre le fichier suivant: \textbf{sudo nano /etc/wpa\char`_supplicant/wpa\char`_supplicant.conf}.
@@ -38,7 +38,7 @@ hébergé par le Rapsberry Pi. Les étapes pour y arriver sont les suivantes:
     \caption{Liste de networks \label{networks_list}}
 \end{figure}
 
-Avec l'ajout de ces lignes, le Rpi4 emet un réseau local, pour que l'émission se fasse dès le démarrage de la carte,
+Avec l'ajout de ces lignes, le Rpi4 émet un réseau local, pour que l'émission se fasse dès le démarrage de la carte,
 il faut ouvrir le fichier suivant avec : \textbf{sudo nano /home/tb/.bashr} et y ajouter les lignes de codes des étapes \textbf{11 et 14}.
 
 Il est possible de s'y connecter avec n'importe quel
@@ -77,5 +77,5 @@ Accès rapide:
 \begin{figure}[H]
     \centering
     \includegraphics[width=3cm]{assets/figures/acces_stream.PNG}
-    \caption{QR code - Connexion stream}
+    \caption{QR code - Connexion Stream}
 \end{figure}
