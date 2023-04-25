@@ -55,6 +55,7 @@ type d'appareil. Le nom du réseau et le mot de passe sont paramétrables, actue
     \caption{QR code - Connexion WiFi local}
 \end{figure}
 
+\newpage
 \section{Affichage}
 Il existe des codes sources disponibles en ligne permettant d'afficher le retour caméra basé sur le package Picamera2 \cite{picamera2}.
 Je me suis inspiré de celui-ci pour mon affichage: \cite{code_camera}.
@@ -62,10 +63,23 @@ Je me suis inspiré de celui-ci pour mon affichage: \cite{code_camera}.
 L'utilisation de \textbf{Picamera2} nécessite l'installation de dépendances:
 \begin{itemize}
     \item \textbf{sudo apt-get install libatlas-base-dev}.
+    \item \textbf{sudo apt install -y python3-picamera2}.
 \end{itemize}
-\textbf{Mettre screenshot du rendu sur natel/pc}
 
-Mettre le code source en annexe.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/retour_video_pc.png}
+    \caption{Retour vidéo - Version PC}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=5cm]{assets/figures/retour_video_natel.jpg}
+    \caption{Retour vidéo - Version téléphone portable}
+\end{figure}
+
+Le code se trouve dans le fichier \underline{stream.py} disponible en annexe.
+\newpage
 \section{Accès}
 L'accès au retour vidéo se fait via une page locale dont l'accès nécessite d'être connecté au WiFi émis par le Rpi4.
 La page se trouve à l'adresse statique suivante:

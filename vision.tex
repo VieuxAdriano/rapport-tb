@@ -205,7 +205,7 @@ les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une
 \begin{figure}[H]
     \centering
     \includegraphics[height=7cm]{assets/figures/rail_alu_led.jpg}
-    \caption{Assemblage - Rail led sur profilé plat}
+    \caption{Assemblage - Rails leds sur profilé plat}
 \end{figure}
 
 On notera qu'un second élément en aluminium a été vissé perpendiculairement au premier de manière à limiter les vibrations sur le rail d'éclairage.
@@ -235,16 +235,16 @@ Au terme des essais, la configuration idéal est la suivante:
     \begin{center}
         \caption{Table - Configuration caméra}
         \begin{tabular}{|c|c|}
-            Elément              & Valeurs                \\ \hline
-            Temps d'exposition   & 500 \si{\milli\second} \\
-            Gain analogique      & 4.0                    \\
-            Balance des blancs R & 0.7                    \\
-            Balance des blancs B & 1.5                    \\
+            Elément              & Valeurs                 \\ \hline
+            Temps d'exposition   & 1080 \si{\milli\second} \\
+            Gain analogique      & 1.65                    \\
+            Balance des blancs R & 0.9                     \\
+            Balance des blancs B & 1.4                     \\
         \end{tabular}
     \end{center}
 \end{table}
 
-Cet configuration permet de..
+Cet configuration permet de c
 \subsubsection{Résultats}
 Une première séance de capture directement m'a permis d'effectuer des captures à l'aide du code mentionné précédemment: \underline{cap\_img\_ref.py}. Cependant, j'ai rencontré un problème, les captures sont floues, laissant penser que la mise au point est mal réglée.
 
@@ -257,14 +257,27 @@ En reproduisant le problème en laboratoire, j'ai compris que c'est la vitre de 
 
 J'estime donc qu'il y a plusieurs solutions qui s'offrent à moi.
 \begin{enumerate}
-    \item Jouer avec le paramètre du focus et trouver une valeur pour laquelle on a une image nette derrière la vitre.
     \item Revoir le placement de la caméra dans le boitier de manière à ne pas coller l'objectif à la vitre.
-    \item
+    \item Jouer avec le paramètre du focus et trouver une valeur pour laquelle l'image est nette derrière la vitre.
+    \item Faire un trou de la taille de l'objectif dans la vitre du boitier.
 \end{enumerate}
+
+La première solution est la plus facilement et rapidement réalisable. J'ai ajouté un jeu de vis et de boulons dans les trous déjà existant sur le PCB de la caméra.
+Ils servent ainsi de butées lorsque le tout est plaqué contre la vitre du boitier.
+\newpage
 
 \subsection{Traitement de l'image}
 \subsubsection{Structure du programme}
-UML ou séquence de traitement
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=10cm]{assets/figures/diagramme_traitement.svg}
+    \caption{Détection - Diagramme du traitement}
+\end{figure}
+\begin{itemize}
+    \item La librairie Picamera2 \cite{picamera2} est majoritairement utilisée pour l'initialisation et la capture de l'image.
+    \item Le prétraitement et la détection utilisent les librairies opencv \cite{opencv} et skimage \cite{skimage}.
+    \item L'actionnement de la télécommande se ferait via la librairie Rpi.GPIO \cite{rpio}.
+\end{itemize}
 \subsubsection{Astuce de codage}
 Code ou morceau de code clé -> lien vers les annexes
 \subsection{Communication}
