@@ -37,7 +37,7 @@ le résultat est le suivant:
 \end{figure}
 \subsection{Capture}
 La capture d'acquisition des images de tests préliminaires se fait via la caméra sélectionnée durant la phase de décision, un Rpi4 ainsi
-qu'un petit script configurant la caméra et enregistrant l'image.
+qu'un petit script configurant la caméra et enregistrant l'image. (Script en annexe \ref{test_process})
 \subsection{Images}
 Vu depuis la caméra, nous avons la scène suivante:
 
@@ -258,7 +258,7 @@ Le programme de capture d'image de références fera plusieurs centaines de capt
     \item Balance des blancs
 \end{itemize}
 
-Le programme \underline{cap\_img\_ref.py} (annexe [faire ref]) effectue les changements de paramètres et capture 3 images par configuration.
+Le programme \underline{cap\_img\_ref.py} (annexe \ref{img_ref}) effectue les changements de paramètres et capture 3 images par configuration.
 
 (D'après la documentation de la caméra, l'ajustement des paramètres s'effectue en 3 frames maximum.)
 Au terme des essais, la configuration idéal est la suivante:
@@ -317,7 +317,7 @@ Cette solution permet d'avoir des images nets ressemblant à ceci:
     \caption{Détection - Diagramme du traitement}
 \end{figure}
 
-Le programme principal consiste en l'appel successif de fonction provenant de la librairie du fichier \underline{detection\_lib.py}.
+Le programme principal (annexe \ref{main}) consiste en l'appel successif de fonction provenant de la librairie du fichier \underline{detection\_lib.py} (annexe \ref{libraire_det}).
 Les fonctions correspondant au diagramme sont respectivement:
 \begin{itemize}
     \item init\_camera(resolution, distance), fonction qui configure et démarre la caméra.
@@ -336,17 +336,17 @@ Une fois le prétraitement et le traitement effectués, l'image résultante est 
     \caption{Détection - Image traitée, en rouge, la séparation des sections}
 \end{figure}
 
-Puis en passant une ligne de pixel à \underline{zone\_detection()}, par exemple les lignes en vert et bleu de l'image précédent, la fonction
-nous retourne le pourcentage d'ouverture de chaque section. On notera que l'algorithme se base sur le fait que les sections s'ouvrent
-et s'élargissent à partir du centre.
+Puis en passant une ligne de pixel à \underline{zone\_detection()}, par exemple les lignes verte, bleue et violette de l'image précédent, la fonction
+nous retourne le pourcentage d'ouverture de chaque section. L'ouverture retournée correspond au rapport entre la largeur de la tâche et de la section.
 
 \begin{table}[H]
     \begin{center}
         \caption{Table - Détection, ouverture des vérins}
         \begin{tabular}{|c|c|c|c|}
-            Ligne & Gauche & Centre & Droite \\ \hline
-            Bleue & 95 \%  & 0 \%   & 96 \%  \\
-            Verte & 100 \% & 100 \% & 100 \% \\
+            Ligne    & Gauche & Centre & Droite \\ \hline
+            Bleue    & 24 \%  & 0 \%   & 42 \%  \\
+            Verte    & 85 \%  & 14 \%  & 84 \%  \\
+            Violette & 0 \%   & 18 \%  & 41 \%  \\
         \end{tabular}
     \end{center}
 \end{table}
