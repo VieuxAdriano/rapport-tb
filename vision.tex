@@ -7,10 +7,10 @@ Au moment des tests, les éléments suivants étaient à ma disposition :
 \begin{itemize}
     \item 1x Raspberry Pi 4b - 4Go de RAM.
     \item 1x Pi caméra module 3 NoIR Wide.
-    \item 20x leds IR 830nm.
-    \item 20x leds IR 850nm.
-    \item 20x leds IR 880nm.
-    \item 1x morceau de route.
+    \item 20x Leds IR 830nm.
+    \item 20x Leds IR 850nm.
+    \item 20x Leds IR 880nm.
+    \item 1x Morceau de route en béton.
     \item 1l. Huile de moteur neuf - 15W-40.
 \end{itemize}
 
@@ -26,13 +26,13 @@ Les veroboards sont pratiques à manipuler, il est possible se les tenir avec de
 le résultat est le suivant:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm]{assets/figures/rail_led1.jpg}
+    \includegraphics[width=10cm]{assets/figures/rail_led1.jpg}
     \caption{Eclairage de test - Rail de leds 1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=8cm]{assets/figures/rail_led2.jpg}
+    \includegraphics[width=6cm]{assets/figures/rail_led2.jpg}
     \caption{Eclairage de test - Rail de leds 2}
 \end{figure}
 \subsection{Capture}
@@ -79,7 +79,8 @@ Ci-dessous, un exemple d'éclairage orienté "contre" la caméra selon la figure
     \caption{Capture de test - éclairage de face 2}
 \end{figure}
 
-On observe que la route et l'huile reflètent les leds IR, à l'oeil nu la différence est notable, mais l'analyse avec un soft peut s'avérer compliquée.\\
+On observe que la route et l'huile reflètent les leds IR, à l'oeil nu la différence est notable, mais l'analyse avec un soft peut s'avérer compliquée.
+
 Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route selon la figure suivante:
 \begin{figure}[H]
     \centering
@@ -92,6 +93,7 @@ Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route sel
     \includegraphics[width=13cm]{assets/figures/eclairage_perpendiculaire1.png}
     \caption{Capture de test - Eclairage perpendiculaire 1}
 \end{figure}
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/eclairage_perpendiculaire2.png}
@@ -103,11 +105,13 @@ Ci-dessous, un exemple d'éclairage orienté perpendiculairement à la route sel
     \includegraphics[width=13cm]{assets/figures/eclairage_perpendiculaire3.png}
     \caption{Capture de test - Eclairage perpendiculaire 3}
 \end{figure}
-On observe que la route diffuse, dans une moindre mesure, l'éclairage des leds IR, là ou l'huile semble absorber les rayonnements. On arrive
+\newpage
+On observe que la route diffuse, dans une moindre mesure, l'éclairage des leds IR, là où l'huile semble absorber les rayonnements. On arrive
 assez facilement à différencier le clair de la route et le foncé de l'huile. La mise en place d'un software de détection est envisageable avec
 un éclairage basé sur ce schéma. A noter que les tests ont été effectués avec plusieurs gammes de leds (830nm, 850nm et 880nm), la différence
 sur le retour image n'est pas très grandes, mais les leds 850nm permettent de mieux différencier la route de l'huile.
-\newpage
+
+La visibilité des captures présentées sont peut-être de moins bonne qualité sur la version papier du rapport.
 J'ai également tenté la configuration suivante:
 \begin{figure}[H]
     \centering
@@ -120,9 +124,10 @@ Mais, étant trop sombre, les images obtenues n'étaient pas utilisables.
 J'ai effectué quelques tests supplémentaires après la réception des filtres ne laissant passer que l'infrarouge. Pour rappel, le filtre
 ne laisse passer que les ondes supérieures à 700nm, les rouges lointains seront encore visibles.
 
+Ci-dessous l'installation du matériel pour les captures de test:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=13cm]{assets/figures/filtre.jpg}
+    \includegraphics[height=11cm]{assets/figures/filtre.jpg}
     \caption{Capture avec filtre - Installation}
 \end{figure}
 
@@ -145,6 +150,7 @@ Les informations concernant ces réglages se trouvent au chapitre 5.2.3 de la do
     \includegraphics[width=13cm]{assets/figures/filtre_IR.png}
     \caption{Capture avec filtre - Leds IR allumées}
 \end{figure}
+\newpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/filtre_IR_huile.png}
@@ -153,23 +159,24 @@ Les informations concernant ces réglages se trouvent au chapitre 5.2.3 de la do
 On observe que la quasi totalité des éclairages de la pièce disparaissent de la capture,
 mettant en évidence la route et la trace d'huile au milieu de celle-ci. Il reste cependant les rayonnements solaires (visible sur la partie gauche des images)
 à gérer, le soleil émettant dans un large spectre, ceux-ci apparaissent dans l'image. L'emplacement du laboratoire ne permet pas de
-tester le filtre et le capteur sous un ensoleillement tel qu'on pourrait avoir en extérieur. De futurs tests sont nécessaires.
+tester le filtre et le capteur sous un ensoleillement tel qu'on pourrait avoir en extérieur, précédemment il a été démontrer que l'emplacement
+de l'éclairage par rapport aux traces influait sur la qualité de la capture, il doit en être de même concernant l'emplacement du soleil. Des tests dans
+différentes conditions doivent être effectués.
 
 \section{Installation}
 \subsection{Eclairage}
 Le but est de garder le même principe d'éclairage que durant les tests préliminaires, c'est à dire une éclairage perpendiculaire au sol,
-en bande, avec des leds IR émettant à 850nm. De plus, il faudrait que le système d'éclairage suive les contraintes suivantes:
+en bande, avec des leds IR émettant à 850nm. De plus, il faudrait dans l'idéal que le système d'éclairage suive les contraintes suivantes:
 \begin{itemize}
     \item Diffusion en bande.
     \item Largeur de 150cm.
-    \item Repliable si non utilisés.
+    \item Possiblement repliable si non utilisés.
     \item Protégé pendant les déplacements.
 \end{itemize}
-J'envisage de faire fabriquer le rails de leds sur les principes suivants:
+J'envisage de fabriquer le rails de leds sur les principes suivants:
 \begin{enumerate}
     \item Elément solide sur lequel braser les leds (veroboard).
-    \item Structure solide sur lequel fixer les veroboards (rail).
-    \item Elément de fixation permettant un repliage.
+    \item Structure solide sur lequel fixer les veroboards (profilé plat).
     \item Tube de protection à enfiler lors des transports.
 \end{enumerate}
 \subsubsection{Veroboard}
@@ -181,7 +188,7 @@ Chaque plaque serait reliée à la suivante via un connecteur afin de transmettr
 L'implantation sur veroboard se ferait selon le plan suivant:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm, trim=0 0 3cm 1cm, clip]{assets/figures/plan_implantation_rail_led.pdf}
+    \includegraphics[width=10cm, trim=0 0 3cm 1cm, clip]{assets/figures/plan_implantation_rail_led.pdf}
     \caption{Plan d'implantation - Rail de Led}
 \end{figure}
 
@@ -197,7 +204,7 @@ le courant traversant les leds étaient de 3,5 \si{\milli\A}, l'intensité lumin
 \end{figure}
 
 Sachant \(R = U / I\), on se retrouve avec \(R = 0.2 / 0.0035 = 57.1 \si{\ohm} \) (Arrondi à 56\si{\ohm} dans la gamme de résistance E12).
-
+\newpage
 \subsubsection{Rails}
 Les veroboards ont été placés sur deux profilés plats en aluminium percées et équipées d'entretoises de manières à accueillir le tout. Il suffit de poser les veroboards,
 les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une carte à l'autre. En cas de panne, le remplacement de la carte problématique est très rapide.
@@ -208,13 +215,38 @@ les fixer à l'aide de rondelles et boulons et de relier les alimentations d'une
     \caption{Assemblage - Rails leds sur profilé plat}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=4cm]{assets/figures/eclairage_cote.jpg}
+    \caption{Assemblage - Angle anti-vibration}
+\end{figure}
+
 On notera qu'un second élément en aluminium a été vissé perpendiculairement au premier de manière à limiter les vibrations sur le rail d'éclairage.
 
-\subsection{Caméra}
-Dans le but d'avoir la caméra le plus centré possible, la caméra ...
+\subsection{Capteur}
+Le capteur et sont filtre seront placés dans un boitier étanche dont la façade est transparente. Pour être le plus centré possible, la caméra sera placée
+le plus à gauche du boitier, plaquée contre l'extérieur.
+\newpage
 \section{Programme}
 \subsection{Librairies}
-indiquer les pip install à faire et toute les lignes pour préformater le rpi4
+Le fonctionnement du programme dépend de plusieurs librairies:
+\begin{itemize}
+    \item numpy
+    \item time
+    \item libcamera
+    \item Picamera2
+    \item cv2
+    \item threading
+    \item RPi.GPIO
+\end{itemize}
+Une partie des packages sont déjà présent par défaut dans l'OS utilisé, \underline{Raspbian Bullseye}, voici la liste des installations à faire:
+\begin{itemize}
+    \item sudo apt install python3-numpy
+    \item sudo apt-get install libatlas-base-dev
+    \item sudo apt install -y python3-picamera2
+    \item sudo apt-get install python-opencv
+    \item sudo apt-get install rpi.gpio
+\end{itemize}
 \subsection{Capture d'images de références}
 \subsubsection{Paramètres}
 Le traitement d'image permettant de mettre en valeur et détecter les hydrocarbures nécessite des images de références ayant été capturées dans des conditions précises et avec des paramètres de caméra maîtrisée.
@@ -248,14 +280,18 @@ Cet configuration permet de c
 \subsubsection{Résultats}
 Une première séance de capture directement m'a permis d'effectuer des captures à l'aide du code mentionné précédemment: \underline{cap\_img\_ref.py}. Cependant, j'ai rencontré un problème, les captures sont floues, laissant penser que la mise au point est mal réglée.
 
-METTRE UNE OU DEUX IMAGE DE LA SEANCE
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{assets/figures/capture_floue.png}
+    \caption{Capture - Image floue}
+\end{figure}
 
-La librairie Picamera2 \cite{picamera2} comprend une méthode qui règle la position de la lentille en fonction de la distance souhaitée pour la mise au point. La méthode a été testée en laboratoire et fonctionnait très bien. Durant la séance de capture,
+La librairie Picamera2 \cite{picamera2} comprend une méthode qui règle la position de la lentille en fonction de la zone à observer pour la mise au point. La méthode a été testée en laboratoire et fonctionnait très bien. Durant la séance de capture,
 la mise au point était définie pour observer les éléments à 90 \si{\centi\meter} de l'objectif.
 
 En reproduisant le problème en laboratoire, j'ai compris que c'est la vitre de protection qui pose problème, en la retirant ou simplement en mettant de la distance entre la vitre et l'objectif, l'image redevient nette.
 
-J'estime donc qu'il y a plusieurs solutions qui s'offrent à moi.
+J'estime donc que plusieurs solutions qui s'offrent à moi.
 \begin{enumerate}
     \item Revoir le placement de la caméra dans le boitier de manière à ne pas coller l'objectif à la vitre.
     \item Jouer avec le paramètre du focus et trouver une valeur pour laquelle l'image est nette derrière la vitre.
@@ -264,20 +300,53 @@ J'estime donc qu'il y a plusieurs solutions qui s'offrent à moi.
 
 La première solution est la plus facilement et rapidement réalisable. J'ai ajouté un jeu de vis et de boulons dans les trous déjà existant sur le PCB de la caméra.
 Ils servent ainsi de butées lorsque le tout est plaqué contre la vitre du boitier.
+
+Cette solution permet d'avoir des images nets ressemblant à ceci:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/oil_test.png}
+    \caption{Détection - Diagramme du traitement}
+\end{figure}
 \newpage
 
 \subsection{Traitement de l'image}
-\subsubsection{Structure du programme}
+\subsubsection{Structure de la partie traitement}
 \begin{figure}[H]
     \centering
-    \includegraphics[height=10cm]{assets/figures/diagramme_traitement.svg}
+    \includegraphics[height=8cm]{assets/figures/diagramme_traitement.png}
     \caption{Détection - Diagramme du traitement}
 \end{figure}
+
+Le programme principal consiste en l'appel successif de fonction provenant de la librairie du fichier \underline{detection\_lib.py}.
+Les fonctions correspondant au diagramme sont respectivement:
 \begin{itemize}
-    \item La librairie Picamera2 \cite{picamera2} est majoritairement utilisée pour l'initialisation et la capture de l'image.
-    \item Le prétraitement et la détection utilisent les librairies opencv \cite{opencv} et skimage \cite{skimage}.
-    \item L'actionnement de la télécommande se ferait via la librairie Rpi.GPIO \cite{rpio}.
+    \item init\_camera(resolution, distance), fonction qui configure et démarre la caméra.
+    \item capture(camera), fonction qui effectue une capture et renvoie l'image.
+    \item pretreatment(image, layer, threshold), fonction qui binarise l'image, par rapport au threshold et au layer souhaité.
+    \item treatment(image\_bin), fonction qui effectue la mise en avant des tâches d'hydrocarbures. Les fonctions d'openCV sont utilisées pour effectuer un opening sur l'image binarisée.
+    \item zone\_detection(line), fonction qui retourne le taux d'ouverture requis pour chaque vérins. Une ligne de pixel est donnée en paramètre. L'emplacement des zones à traiter sont déterminés et l'ouverture est retournée en fonction de la largeur et l'excentrage dans chaque section.
 \end{itemize}
-\subsubsection{Astuce de codage}
-Code ou morceau de code clé -> lien vers les annexes
-\subsection{Communication}
+
+\subsection{Aperçu du traitement}
+Une fois le prétraitement et le traitement effectués, l'image résultante est la suivante:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{assets/figures/traitement1.PNG}
+    \caption{Détection - Image traitée, en rouge, la séparation des sections}
+\end{figure}
+
+Puis en passant une ligne de pixel à \underline{zone\_detection()}, par exemple les lignes en vert et bleu de l'image précédent, la fonction
+nous retourne le pourcentage d'ouverture de chaque section. On notera que l'algorithme se base sur le fait que les sections s'ouvrent
+et s'élargissent à partir du centre.
+
+\begin{table}[H]
+    \begin{center}
+        \caption{Table - Détection, ouverture des vérins}
+        \begin{tabular}{|c|c|c|c|}
+            Ligne & Gauche & Centre & Droite \\ \hline
+            Bleue & 95 \%  & 0 \%   & 96 \%  \\
+            Verte & 100 \% & 100 \% & 100 \% \\
+        \end{tabular}
+    \end{center}
+\end{table}

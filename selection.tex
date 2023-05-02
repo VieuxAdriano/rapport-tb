@@ -1,6 +1,6 @@
 \section{Alimentation}
 Nous avons vu que la remorque utilise une prise 13 broches pour son alimentation. Le véhicule tractant la remorque peut varier, il n'y a donc pas de
-garanti qu'il y ait une deuxième prise disponibles pour le système qui sera ajouté. L'idéal serait d'avoir accès à la masse et au 12[V].
+garanti qu'il y ait une deuxième prise disponibles pour le système qui sera ajouté. L'idéal serait d'avoir accès au 12[V] et à la masse.
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{assets/figures/broches.jpg}
@@ -12,13 +12,13 @@ Ce qui nous intéresse:
     \item Broche 13 : Masse
 \end{itemize}
 Les broches ayant chacune une fonction particulière, il n'existe pas de multiprise permettant de joindre deux connecteurs mâle vers une femelle.
-Il faudrait donc fabriquer un boitier d'adaptation permettant de dévier les broches utiles, tout en préservant l'alimentation de la remorque et du matériel installé dessus.
+Il faudrait donc fabriquer un boitier d'adaptation ou bricoler une rallonge permettant de dévier les broches utiles, tout en préservant l'alimentation de la remorque et du matériel installé dessus.
 
 
 Voir figure \ref{alim}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=7cm]{assets/figures/Alimentation.drawio}
+    \includegraphics[height=7cm]{assets/figures/alimentation.png}
     \caption{Boitier d'adaptation de l'alimentation \label{alim}}
 \end{figure}
 \newpage
@@ -32,11 +32,11 @@ Il est important de se rappeler que leurs emplacements seront les suivants:
     \begin{center}
         \caption{Liste des éléments et emplacements}
         \begin{tabular}{|c|l|}
-            Eléments                        & Emplacement                \\ \hline
-            Caméra et boitier de traitement & Support de la remorque     \\
-            Eclairage                       & Timon                      \\
-            Actionnement de la télécommande & Support de la remorque     \\
-            Affichage pour copilote         & Place passager du véhicule
+            Eléments                        & Emplacement            \\ \hline
+            Caméra et boitier de traitement & Support de la remorque \\
+            Eclairage                       & Timon                  \\
+            Actionnement de la télécommande & Support de la remorque \\
+            Affichage pour copilote         & Dans le véhicule
         \end{tabular}
     \end{center}
 \end{table}
@@ -52,7 +52,7 @@ Parmi les connexions sans fil:
     \item Via un réseau \Gls{wifi} local.
 \end{itemize}
 La connexion sans fil doit garantir une connectivité stable sur un rayon de 5 mètres autour du véhicule (avec obstacles). De plus, le débit doit être
-suffisant pour diffuser un flux vidéo (entre 30 et 60 \Gls{fps}). La solution du réseau local \Gls{wifi} semble être la meilleure.
+suffisant pour diffuser un flux vidéo. La solution du réseau local \Gls{wifi} semble être la meilleure.
 
 \textbf{La possibilité de communiquer via un réseau local \Gls{wifi} devient donc un prérequis pour le retour vidéo.}
 \newpage
@@ -71,7 +71,7 @@ c'est à dire sur une bande. Avec des leds montées en ligne, il n'est pas néce
 
 Des leds trouvées sur le site de Mouser semblent correspondre à ces conditions \cite{ledIR}.
 
-Leur préparation se résumerait à une mise en bande (2x 75\si{\centi\metre}) et les alimenter.
+Leur préparation se résumerait à une mise en bande sur une structure solide (2x 75\si{\centi\metre}) et les alimenter.
 
 
 \subsection{Caméra}
@@ -82,9 +82,9 @@ La caméra à choisir doit remplir les critères suivants:
     \item Champ de vision suffisant pour observer la largeur de la route.
 \end{itemize}
 
-La caméra Module 3 "NoIR - Wide" de Raspberry Pi \cite{camera} semble répondre aux critères. Avec une mise au point à partir de 5cm vers l'infini,
+La caméra Module 3 "NoIR - Wide" de Raspberry Pi \cite{camera} répond aux critères. Avec une mise au point à partir de 5cm vers l'infini,
 une résolution de 11.9 mégapixels (4608x2592) et d'un champ de vision de \ang{120}, elle offre une image nette et très détaillée avec beaucoup de liberté sur
-son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \si{\nano\metre}.
+son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \si{\nano\metre}. Elle est disponible très rapidement et pour 30 \gls{chf}.
 \begin{figure}[H]
     \centering
     \includegraphics[height=7cm,angle=-90]{assets/figures/camera.png}
@@ -144,7 +144,7 @@ pour les dimensions désirées. De plus, les délais de livraison durant la pér
 L'idée, avec les servomoteurs, serait de les équiper d'un élément de préhension tangent à l'axe de rotation du moteur permettant de presser sur les boutons.
 Le pilotage d'un servomoteur se fait par PWM, nécessitant donc qu'une seule sortie par éléments au niveau de la carte de commande. De plus, il est assez facile de
 trouver des servomoteurs avec des caractéristiques en phase avec le projet, c'est à dire d'un point de vu taille, force et consommation, et ce à des prix
-raisonnable (avoisinant 10 \Gls{chf}). L'installation sur un support est plus complexe que pour les vérins.
+raisonnables (avoisinant 10 \Gls{chf}). L'installation sur un support est plus complexe que pour les vérins.
 
 L'utilisation du moteur pas à pas serait similaires au servomoteur, c'est à dire avec un élément qui presse sur les boutons.
 Il est assez facile de trouver des moteurs avec des caractéristiques en phase avec le projet à des prix raisonnable (avoisinant 10 \Gls{chf}). La commande d'un moteur pas à pas
@@ -164,9 +164,10 @@ appropriée. J'ai trouvé un aimant de levage avec les caractéristiques suivant
     \item Force en fin de course: 11 \si {\newton}
 \end{itemize}
 
-\textbf{La suite du développement se fera avec des aimants de levage comme actionneurs de la télécommande.}
+Un test de préhension est effectué au chapitre \ref{aimant}, le test montre que la caractéristique de force de l'aimant n'est pas suffisante.
+
 \section{Retour vidéo}
-Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbure doivent être visible par le copilote.
+Le résultat de l'analyse du traitement d'image et la mise en évidence des traces d'hydrocarbures doivent être visible par le conducteur/copilote.
 La visualisation du retour se fera naturellement via un écran. Les idées de bases sont les suivantes:
 \begin{itemize}
     \item Installation d'un écran portable.
@@ -181,7 +182,7 @@ L'idée de l'application mobile présente certains avantages, comme l'installati
 qu'une seul fois sur son téléphone portable pour accéder au retour vidéo (sous condition d'être connecté au réseau \Gls{wifi} local).
 Tout le monde serait alors équiper de son propre écran, petit, pratique et peu encombrant. Le problème majeur est la différence de système d'exploitation
 entre les téléphones portables. Le développement d'une application universelle est compliquée, il faudrait avoir une application par système grand public.
-De plus, l'installation d'une application non reconnu par Apple doit être téléversée directement à partir d'un ordinateur.
+De plus, l'installation d'une application non reconnu nécessite des autorisations spéciales sur le téléphone de l'utilisateur.
 
 L'affichage du retour vidéo via une page locale semble être optimal. En plus de regrouper les avantages de l'application mobile, nous nous débarrassons des défauts.
 L'accès au lien de la page pourrait se faire via un QR code à scanner sur le boitier de commande.
@@ -198,7 +199,7 @@ L'accès au lien de la page pourrait se faire via un QR code à scanner sur le b
             Eclairage                 & Leds IR 850 \si{\nano\metre}      \\
             Caméra                    & Rpi module 3 NoIR Wide            \\
             Traitement d'image        & Raspberry Pi 4                    \\
-            Actionnement télécommande & Aimants de levage                 \\
+            Actionnement télécommande & \textbf{A définir}                \\
             Affichage pour copilote   & Page web local                    \\
         \end{tabular}
     \end{center}
@@ -212,16 +213,20 @@ un fusible à l'entrée du boitier.
     \begin{center}
         \caption{Table - Bilan de consommation}
         \begin{tabular}{|c|c|c|c|}
-            Eléments            & Conso. par unité   & Quantité & Conso. totale        \\ \hline
-            Camera + \Gls{rpi4} & 15 \si{\watt}      & 1        & 15    \si{\watt}     \\
-            Leds IR             & 3 \si{\milli\watt} & 100      & 300 \si{\milli\watt} \\
-            Aimants de levage   & 7 \si{\watt}       & 6*       & 42 \si{\watt}        \\
-            Total               & -                  & -        & 57.3 \si{\watt}      \\
+            Eléments                  & Conso. par unité   & Quantité & Conso. totale        \\ \hline
+            Camera + \Gls{rpi4}       & 15 \si{\watt}      & 1        & 15    \si{\watt}     \\
+            Leds IR                   & 3 \si{\milli\watt} & 100      & 300 \si{\milli\watt} \\
+            Actionnement télécommande & -                  & 6*       & -                    \\
+            Total                     & -                  & -        & 15.3 \si{\watt}      \\
         \end{tabular}
     \end{center}
 
-    *Normalement, seul 3 aimants de levage peuvent être actifs simultanément.
+    *Normalement, seul actionneurs peuvent être actifs simultanément.
 \end{table}
 
-Sachant que l'alimentation depuis la remorque est de 12 \si{\volt}, on en déduit que le courant sera de \(I = P/U = 57.3/12 = 4.775 \si{\ampere} \).
-L'utilisation d'un fusible de 5 \si{\ampere} semble être une bonne option, on en trouve très facilement sur le marché à très bas prix avec un support adapté.
+Sachant que l'alimentation depuis la remorque est de 12 \si{\volt}, on en déduit que le courant sera de \(I = P/U = 15.3/12 = 1.275 \si{\ampere} \).
+L'utilisation d'un fusible de 1.5 \si{\ampere} semble être une bonne option, cette valeur est disponible au \gls{fablab}. Par la suite, il serait judicieux
+d'installer un disjoncteur réarmable afin d'éviter de changer de pièce en cas de problème.
+
+\textbf{À noter que la valeur du courant nécessaire ne tient pas compte des actionneurs de la télécommande. Ce courant devra être recalculé lorsque
+    cette aspect sera défini.}

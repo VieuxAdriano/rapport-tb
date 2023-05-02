@@ -5,8 +5,10 @@ Durant ses activités, le système observera principalement les éléments suiva
     \item Le béton
     \item Le goudron
 \end{enumerate}
-On m'informant sur les méthodes de détection déjà existante des hydrocarbures, j'ai constaté que l'intégralité d'entre eux fonctionnent
-par ultraviolet (mesure de fluorescence) et par infrarouge. Je vais donc m'informer sur la réaction des éléments susmentionné suivant l'exposition à différentes longueurs d'ondes.
+En m'informant sur les méthodes de détection déjà existantes des hydrocarbures, j'ai constaté que l'intégralité d'entre eux fonctionnent
+par ultraviolet (mesure de fluorescence) et par infrarouge. Je vais donc m'informer sur la réaction des éléments susmentionnés suivant l'exposition à différentes longueurs d'ondes.
+
+\textbf{Note: Le terme "infrarouge" sera noté "IR" dans la suite du rapport.}
 \subsection{Hydrocarbures}
 Les principaux hydrocarbures traités par les pompiers durant leurs interventions sont les suivants:
 \begin{enumerate}
@@ -67,20 +69,16 @@ Nous observons un point commun pour les trois types d'hydrocarbures, il s'agit d
 
 Pour cette longueur d'onde spécifique, la transmittance globale se trouve entre \underline{5 et 30\%}.
 
-\subsection{Béton}
-
-\subsection{Goudron}
-On retrouve des hydrocarbures dans la composition du goudron, ceux-ci étant similaires aux hydrocarbures à détecter, le spectre IR pourrait nous indiquer des problèmes de détection pour la classification ...
-
-\subsection{Bitume}
-Des informations sont disponibles certains travaux en ligne \cite{Bitume}. Le graphe suivant met en évidence les pics d'absorption du bitume.
-
+\subsection{Route}
+Beaucoup de confusion et d'abus de langage sont faites dans les travaux de recherche et dans les documents disponibles sur internet.
+Les distinctions entre les matériaux de construction routière sont souvent mal définies ou mal traduites, ce qui entraîne une mauvaise
+fiabilité sur les caractéristiques indiquée.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm]{assets/figures/bitumeIR.png}
+    \includegraphics[width=11cm]{assets/figures/bitumeIR.png}
     \caption{Bitume - Spectre IR \cite{Bitume}}
 \end{figure}
-
+Ci-dessus un des rares graphe relativement fiable sur le comportement du bitume face aux infrarouges.
 \subsection{Analyse}
 On observe que les diverses éléments qui seront vus par la caméra ont une variation du taux d'absorptions face aux longueurs d'onde avoisinant les
 3300 \si{\nano\metre}, mais à différents ordres de grandeurs. Là ou les hydrocarbures absorbent jusqu'à 95\% des ondes, les routes en absorbent "seulement" jusqu'à 45\%.
@@ -90,12 +88,12 @@ En se basant sur ceci, il devrait être possible de faire une différenciation p
 Selon les normes \Gls{iso} 20473:2007 \cite{ISO}, cette longueur d'onde se trouve parmi les \Gls{mir}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=13cm]{assets/figures/gamme_infra.png}
+    \includegraphics[width=9cm]{assets/figures/gamme_infra.png}
     \caption{Classification des \Gls{ir} selon les normes \Gls{iso} 20473:2007 \cite{ISO}}
 \end{figure}
 
-Après quelques recherches à propos d'un éclairage et surtout d'un capteur adapté à cette gamme de longueur d'onde, je me suis vite aperçu
-que les disponibilités et les délais d'arrivée de ce genre de composants ne correspondait pas avec le rythme d'avancée de mon travail,
+Après des recherches à propos d'un éclairage et surtout d'un capteur adapté à cette gamme de longueur d'onde, je me suis vite aperçu
+que les disponibilités et les délais d'arrivées de ce genre de composants ne correspondaient pas avec le rythme d'avancée de mon travail,
 j'ai donc exploré d'autres options, toujours dans le milieu de l'infrarouge.
 
 Je suis tombé par hasard sur les produits du "Laboratoire des huiles de moteurs" (faisant parti du HTDS), qui apparemment, utilisent
@@ -103,7 +101,7 @@ des rayonnements infrarouges proche du visible (aux alentours de 850nm) pour eff
 mais la disponibilités d'un capteur et d'éclairage pour cette gamme de longueur d'onde permet d'effectuer des tests très rapidement.
 Les résultats de ces tests se trouvent au chapitre \ref{test_vision}.
 
-\textbf{Note suites aux essaies: Les tests semblent concluant et ressorte des images tout à fait exploitables pour effectuer une localisation des
+\textbf{Note suites aux essaies: Les tests semblent concluant et produisent des images exploitables pour effectuer une localisation des
     traces d'hydrocarbures.}
 
 \textbf{\underline{La suite du projet se basera sur un éclairage émettant à 850nm.}}
