@@ -38,6 +38,7 @@ le résultat est le suivant:
 \subsection{Capture}
 La capture d'acquisition des images de tests préliminaires se fait via la caméra sélectionnée durant la phase de décision, un Rpi4 ainsi
 qu'un petit script configurant la caméra et enregistrant l'image. (Script en annexe \ref{test_process})
+\newpage
 \subsection{Images}
 Vu depuis la caméra, nous avons la scène suivante:
 
@@ -235,7 +236,7 @@ Le fonctionnement du programme dépend de plusieurs librairies:
     \item time
     \item libcamera
     \item Picamera2
-    \item cv2
+    \item openCV
     \item threading
     \item RPi.GPIO
 \end{itemize}
@@ -259,8 +260,7 @@ Le programme de capture d'image de références fera plusieurs centaines de capt
 \end{itemize}
 
 Le programme \underline{cap\_img\_ref.py} (annexe \ref{img_ref}) effectue les changements de paramètres et capture 3 images par configuration.
-
-(D'après la documentation de la caméra, l'ajustement des paramètres s'effectue en 3 frames maximum.)
+(la documentation de la caméra indique que l'ajustement des paramètres s'effectue en 3 frames maximum.)
 Au terme des essais, la configuration idéal est la suivante:
 
 \begin{table}[H]
@@ -276,7 +276,7 @@ Au terme des essais, la configuration idéal est la suivante:
     \end{center}
 \end{table}
 
-Cet configuration permet de c
+Cet configuration permet de capturer correctement les traces d'hydrocarbures de manière à ce qu'elle soit très visible lorsqu'on isole le premier layer de l'image.
 \subsubsection{Résultats}
 Une première séance de capture directement m'a permis d'effectuer des captures à l'aide du code mentionné précédemment: \underline{cap\_img\_ref.py}. Cependant, j'ai rencontré un problème, les captures sont floues, laissant penser que la mise au point est mal réglée.
 
@@ -305,7 +305,7 @@ Cette solution permet d'avoir des images nets ressemblant à ceci:
 \begin{figure}[H]
     \centering
     \includegraphics[width=13cm]{assets/figures/oil_test.png}
-    \caption{Détection - Diagramme du traitement}
+    \caption{Détection - Image de référence}
 \end{figure}
 \newpage
 
@@ -318,13 +318,13 @@ Cette solution permet d'avoir des images nets ressemblant à ceci:
 \end{figure}
 
 Le programme principal (annexe \ref{main}) consiste en l'appel successif de fonction provenant de la librairie du fichier \underline{detection\_lib.py} (annexe \ref{libraire_det}).
-Les fonctions correspondant au diagramme sont respectivement:
+Les fonctions correspondantes au diagramme sont respectivement:
 \begin{itemize}
     \item init\_camera(resolution, distance), fonction qui configure et démarre la caméra.
     \item capture(camera), fonction qui effectue une capture et renvoie l'image.
     \item pretreatment(image, layer, threshold), fonction qui binarise l'image, par rapport au threshold et au layer souhaité.
     \item treatment(image\_bin), fonction qui effectue la mise en avant des tâches d'hydrocarbures. Les fonctions d'openCV sont utilisées pour effectuer un opening sur l'image binarisée.
-    \item zone\_detection(line), fonction qui retourne le taux d'ouverture requis pour chaque vérins. Une ligne de pixel est donnée en paramètre. L'emplacement des zones à traiter sont déterminés et l'ouverture est retournée en fonction de la largeur et l'excentrage dans chaque section.
+    \item zone\_detection(line), fonction qui retourne le taux d'ouverture requis pour chaque vérins. Une ligne de pixel est donnée en paramètre. L'emplacement des zones à traiter sont déterminés et l'ouverture est retournée en fonction de la largeur des traces dans chaque section.
 \end{itemize}
 
 \subsection{Aperçu du traitement}

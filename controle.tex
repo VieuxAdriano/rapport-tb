@@ -19,14 +19,14 @@ une longueur suffisante pour atteindre son pic de force.
     \begin{center}
         \caption{Résultats du test de préhension}
         \begin{tabular}{|c|l|}
-            Eléments       & Boutons \\ \hline
-            Préhenseur 11N & NON     \\
+            Eléments       & Préhension réussite \\ \hline
+            Préhenseur 11N & NON                 \\
         \end{tabular}
     \end{center}
 \end{table}
 
 Le préhenseur testé n'a pas assez de force pour presser sur les boutons de la télécommande. Il existe des modèles plus puissant, mais également
-plus large,ceux-ci ne pourraient pas être placés côte-à-côte. Plusieurs autres solutions ont été présentées lors du choix du matériel, mais malheureusement
+plus large, ceux-ci ne pourraient pas être placés côte-à-côte. Plusieurs autres solutions ont été présentées lors du choix du matériel, mais malheureusement
 n'ont pas encore été testée.
 
 N'ayant pas encore les caractéristiques de l'élément de préhension, l'installation du tiroir de la télécommande n'a pas été défini.
@@ -42,8 +42,8 @@ Plusieurs solutions ont été envisagées:
           la différence de position serait déterminer avec une corrélation. \underline{L'avantage} premier est que j'ai déjà la caméra, il n'y aurait pas besoin d'ajouter d'autres composants.
           \underline{Les inconvénients} sont les suivants, le filtre limitant les rayonnements visibles pourrait être problématique pour faire des corrélations, de plus, le temps de calcul nécessaire
           à une corrélation est trop grand, ce serait trop difficile de concilier efficacité de la cadence de traitement et mesure de la vitesse.
-    \item Mesure par radar Doppler: Le radar Doppler permet de mesuré la vitesse relative entre deux éléments, entre un élément immobile et un véhicule par exemple. Dans notre cas d'utilisation, cette méthode n'est pas adaptée car il n'y
-          d'élément immobile a observer avec le radar lorsque le véhicule se déplace.
+    \item Mesure par radar Doppler: Le radar Doppler permet de mesurer la vitesse relative entre deux éléments, entre un élément immobile et un véhicule par exemple. Dans notre cas d'utilisation, cette méthode n'est pas adaptée car il n'y
+          a pas d'élément immobile à observer avec le radar lorsque le véhicule se déplace.
     \item Mesure par capteur à effet Hall. L'idée est de fixer un aimant sur l'essieu d'une des roues de la remorques.
           Ainsi, lorsque la roue est en mouvement, l'aimant passe devant le capteur. Sachant les dimensions du pneus de la remorque, il serait possible de déterminer la vitesse en fonction de la fréquence d'activation du capteur.
           \underline{Avantages :} Peu coûteux, facile à mettre en place, nécessite seulement de configurer une routine d'interruption sur le \Gls{rpi4}.
@@ -86,7 +86,7 @@ l'assemblage suivant a été effectué:
     \caption{Mesure de vitesse - Montage de test}
 \end{figure}
 Un aimant est accroché à la barre, la manivelle permet de faire tourner la barre, faisant passer l'aimant devant le capteur.
-Notons que ce capteur Reed et les aimants ont été trouvés au \gls{fablab} et leurs caractéristiques ne sont pas connu. La distance les
+Notons que ce capteur Reed et les aimants ont été trouvés au \gls{fablab} et leurs caractéristiques ne sont pas connues. La distance les
 séparant a été déterminée en faisant des essais.
 
 En faisant tourner l'aimant, l'Oscillogramme suivant a été observé:
@@ -111,7 +111,7 @@ La vitesse se calcul de la manière suivante: \(V = diam*pi/$\Delta$t \)
 Le pourcentage de différence: \(diff = 100*|theo-mes|/theo \)
 \begin{table}[h]
     \begin{center}
-        \caption{Mesure de vitesse par génération de signaux}
+        \caption{Mesure de vitesse par interruptions}
         \begin{tabular}{|c|c|c|c|}
             $\Delta$t [s] & Vitesse théorique [m/s] & Vitesse retourné [m/s] & Différence  [\%] \\ \hline
             2.16          & 1.018                   & 1.018                  & 0                \\
@@ -152,7 +152,7 @@ Les préhenseurs n'ayant pas été sélectionnés, les fonctions précédemment 
 à l'aide d'un oscilloscope.
 \newpage
 Ci-dessous, un relevé d'oscilloscope comprenant deux traces. \textbf{En jaune}, le signal d'une première sortie, celle-ci doit s'ouvrir à 20\% puis à 25\%,
-le signal soit donc indiqué un premier état haut de 20\% du temps maximal d'ouverture, puis un second était haut de 5\% du temps maximal d'ouverture.
+le signal doit donc indiqué un premier état haut de 20\% du temps maximal d'ouverture, puis un second était haut de 5\% du temps maximal d'ouverture.
 \textbf{En bleu}, le signal d'une seconde sortie, celle-ci doit s'ouvrir à 10\% puis à 50\%, les deux états haut doivent durer respectivement 10\% puis 40\% du temps maximal d'ouverture.
 
 Dans le cadre de ce test, le temps maximal d'ouverture a été défini à 0.5 [s].
@@ -163,7 +163,7 @@ Dans le cadre de ce test, le temps maximal d'ouverture a été défini à 0.5 [s
 \end{figure}
 
 Le pourcentage de différence: \(diff = 100*|theo-mes|/theo \)
-Le $\delta$t théorique s'obtient avec \($\delta$t = t\_max * pct\_diff\)
+Le $\Delta$t théorique s'obtient avec \($\Delta$t = t\_max * pct\_diff\)
 
 Les valeurs retournées ont été mesurées avec les curseurs de l'oscilloscope.
 \begin{table}[h]
@@ -185,7 +185,7 @@ Les résultats des fonctions de commande des ouvertures et fermeture des vérins
 \newpage
 \section{Câblage - Attribution des pins I/O}
 Lors des tests fonctionnels du chapitre précédent, des pins ont été attribuées aux différentes entrées et sorties. Il existe deux numérotations différentes \cite{pinning_Rpi4},
-le numéro d'E\/S et son emplacement physique. Le câblage a été fait selon le tableau ci-dessous, des petites étiquettes avec des abréviations ont été ajoutée au montage pour éviter les confusions durant les mesures.
+le numéro d'E/S et son emplacement physique. Le câblage a été fait selon le tableau ci-dessous, des petites étiquettes avec des abréviations ont été ajoutée au montage pour éviter les confusions durant les mesures.
 
 
 \begin{table}[h]

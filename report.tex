@@ -7,7 +7,7 @@
 \usepackage[nooldvoltagedirection,european,americaninductors]{circuitikz}
 \usepackage{pdfpages}
 \usepackage{lscape}
-
+\usepackage{pifont}
 \signature{avieux.svg} 
 
 \makenomenclature
@@ -71,6 +71,9 @@
 \chapter{Sélection du matériel et des technologies}
 \input{selection.tex}
 
+\chapter{Langage de programmation}
+\input{language.tex}
+
 \chapter{Système de vision}
 \input{vision.tex}
 
@@ -94,29 +97,44 @@
 \addappheadtotoc
 
 %%if
-\chapter{Première annexe}
-
-Les annexes n'ont pas un contenu \underline{normatif} mais \underline{descriptif}. Tout contenu annexé ne doit pas être nécessaire à la bonne compréhension du travail.
-
-Les annexes contiennent généralement :
-
-\begin{itemize}
-    \item les dessins mécaniques (mises en plan);
-    \item les schémas électriques détaillés;
-    \item des photographies du projet;
-    \item des scripts et des extraits de code source;
-    \item des documents techniques \pex \emph{datasheet};
-    \item des développements mathématiques.
-\end{itemize}
-\section{Sous section}
-\lipsum[1]
-
+\chapter{Planning \label{planning}}
 \chapter{Datasheets}
 \section{Led infrarouge 850nm}
-\includepdf[pages=-]{assets/pdf/datasheet_led.pdf}
+\includepdf[pages={4-5}]{assets/pdf/datasheet_led.pdf}
 \section{PiCamera module 3 NOiR Wide}
-\includepdf[pages=-]{assets/pdf/datasheet_camera.pdf}
+\includepdf[pages={3-5}]{assets/pdf/datasheet_camera.pdf}
 
+\section{Régulateur 1.5 [V]}
+\includepdf[pages=-]{assets/pdf/datasheet_regul.pdf}
+
+\section{Alimentation à découpage}
+\includepdf[pages=-]{assets/pdf/datasheet_alim.pdf}
+
+\chapter{Liste du matériel}
+\begin{table}[H]
+    \begin{center}
+        \caption{Table - Détection, ouverture des vérins}
+        \begin{tabular}{|c|c|c|c|c|}
+            Quantités & Eléments                  & Fournisseurs         & Référence      & Prix total \\ \hline
+            100       & Leds 850 nm               & Mouser               & SFH 4555       & 33 CHF     \\
+            100       & Resistance 56 \si{\ohm}   & FabLab               & -              & -          \\
+            2         & Profilé plat 800x30x5     & Atelier électroméca. & -              & -          \\
+            2         & Profilé plat 700x30x5     & Atelier électroméca. & -              & -          \\
+            1         & Boitier étanche           & Distrelec            & 301-13-308     & 44.50 CHF  \\
+            1         & Supp. Alu boitier 29x45x3 & Atelier électroméca. & -              & -          \\
+            1         & Alim. découpage 12V - 5 V & Distrelec            & 169-06-002     & 36.20 CHF  \\
+            1         & Régulateur 1.5 V          & Mouser               & 755-BA15JC5T   & 2.50 CHF   \\
+            1         & Fusible                   & FabLab               & -              & -          \\
+            1         & Rallonge 13 broches       & Amazon               & B0854BW6NZ     & 30 CHF     \\
+            1         & RaspberryPi 4 4Go         & ReDs                 & -              & -          \\
+            1         & Rail DIN 260 mm           & Distrelec            & 301-55-505     & 3.50 CHF   \\
+            1         & Caméra RPi module 3 NoIR  & Digi-key             & 2648-SC0875-ND & 31.15 CHF  \\
+            1         & Capture Reed              & FabLab               & -              & -          \\
+            1         & Aimant                    & FabLab               & -              & -          \\ \hline
+            Total     &                           &                      &                & 181.20 CHF \\
+        \end{tabular}
+    \end{center}
+\end{table}
 \chapter{Programmes}
 
 \section{Test de captures \label{test_process}}
@@ -132,6 +150,19 @@ Les annexes contiennent généralement :
 
 \section{Stream \label{stream}}
 \includepdf[pages=-]{assets/code/stream.py.pdf}
+
+\chapter{Angle de vue \label{dev_pxl}}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/figures/developpement_resolution.PNG}
+    \caption{Annexe - Développement résolution}
+\end{figure}
+\chapter{Schéma électrique}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/figures/circuit.png}
+    \caption{Annexe - Schéma électrique boitier}
+\end{figure}
 %%fi
 
 \let\cleardoublepage\clearpage

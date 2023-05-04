@@ -88,8 +88,9 @@ son placement. Sa sensibilité aux infrarouges monte jusqu'au environ de 1000 \s
 \begin{figure}[H]
     \centering
     \includegraphics[height=7cm,angle=-90]{assets/figures/camera.png}
-    \caption{Camera module 3 NoIR wide}
+    \caption{\href{https://www.digikey.ch/en/products/detail/raspberry-pi/SC0875/17278642}{Camera module 3 NoIR wide}}
 \end{figure}
+Développement de la largeur nécessaire en pixel en annexe \ref{dev_pxl}.
 \newpage
 \subsection{Système embarqué de traitement}
 L'unité de traitement doit respecter les contraintes suivantes:
@@ -123,12 +124,13 @@ Note: Le Raspberry Pi 4 sera abrévié "\Gls{rpi4}" dans la suite du rapport.
 \begin{figure}[H]
     \centering
     \includegraphics[height=7cm]{assets/figures/rpi4.png}
-    \caption{Raspberry Pi4 4Go}
+    \caption{\href{https://www.raspberrypi.com/}{Raspberry Pi4 4Go}}
 \end{figure}
 
 \newpage
 \section{Système de commande - Actionnement de la télécommande}
-Les idées de base d'actionneurs permettant d'appuyer sur la télécommande sont les suivants:
+Dans le but de conserver le fonctionnement de base du semoir, la commande des vérins se fera par préhension sur la télécommande.
+Les idées d'actionneurs sont les suivants:
 \begin{itemize}
     \item Vérins électriques.
     \item Servomoteurs.
@@ -176,13 +178,13 @@ La visualisation du retour se fera naturellement via un écran. Les idées de ba
 \end{itemize}
 
 Les problèmes de l'écran portable sont multiples, notamment l'alimentation, le câblage vers une source d'alimentation peut-être encombrant
-et limiterait les mouvements/déplacements de l'utilisateur. De plus la connexion vers un réseau \Gls{wifi} local n'est pas garantie.
+et limiterait les mouvements/déplacements de l'utilisateur. De plus, la connexion vers un réseau \Gls{wifi} local n'est pas garantie.
 
 L'idée de l'application mobile présente certains avantages, comme l'installation unique. L'opérateur n'aurait qu'à mettre l'application
-qu'une seul fois sur son téléphone portable pour accéder au retour vidéo (sous condition d'être connecté au réseau \Gls{wifi} local).
+qu'une fois sur son téléphone portable pour accéder au retour vidéo (sous condition d'être connecté au réseau \Gls{wifi} local).
 Tout le monde serait alors équiper de son propre écran, petit, pratique et peu encombrant. Le problème majeur est la différence de système d'exploitation
 entre les téléphones portables. Le développement d'une application universelle est compliquée, il faudrait avoir une application par système grand public.
-De plus, l'installation d'une application non reconnu nécessite des autorisations spéciales sur le téléphone de l'utilisateur.
+De plus, l'installation d'une application non reconnue nécessite des autorisations spéciales sur le téléphone de l'utilisateur.
 
 L'affichage du retour vidéo via une page locale semble être optimal. En plus de regrouper les avantages de l'application mobile, nous nous débarrassons des défauts.
 L'accès au lien de la page pourrait se faire via un QR code à scanner sur le boitier de commande.
@@ -221,7 +223,7 @@ un fusible à l'entrée du boitier.
         \end{tabular}
     \end{center}
 
-    *Normalement, seul actionneurs peuvent être actifs simultanément.
+    *Normalement, seul 3 actionneurs peuvent être actifs simultanément.
 \end{table}
 
 Sachant que l'alimentation depuis la remorque est de 12 \si{\volt}, on en déduit que le courant sera de \(I = P/U = 15.3/12 = 1.275 \si{\ampere} \).
