@@ -1,7 +1,7 @@
 \section{Tests préliminaires \label{test_vision}}
 Le but des tests préliminaires est de vérifier que les analyses effectuées dans la phase de recherche sont applicables et nous retournent
 des résultats exploitables. Ils permettent également de se rendre compte si le système imaginé lors de la sélection du matériel est en accord avec
-ce qui est réalisable.
+ce qui doit être réalisé.
 \subsection{Matériel}
 Au moment des tests, les éléments suivants étaient à ma disposition :
 \begin{itemize}
@@ -55,7 +55,7 @@ laissant passer que les infrarouges. J'ai donc effectué les captures qui vont s
     \item Deux lignes de 10 leds IR éclairant en direction de la tâche d'huile de moteur.
     \item Protection contre les lumières parasites du couloir (carton).
     \item Auto-focus sur le centre de l'image
-    \item Temps d'exposition: 5000[ns]. (déterminé expérimentalement avec plusieurs captures)
+    \item Temps d'exposition: 5000[ns] (déterminé expérimentalement avec plusieurs captures).
 \end{itemize}
 Avec ce setup, j'ai effectué plusieurs captures en faisant varier la position de l'éclairage par rapport à la tâche d'huile et la caméra.
 J'ai obtenu différents résultats, plus ou moins utilisables.
@@ -113,6 +113,7 @@ un éclairage basé sur ce schéma. A noter que les tests ont été effectués a
 sur le retour image n'est pas très grandes, mais les leds 850nm permettent de mieux différencier la route de l'huile.
 
 La visibilité des captures présentées sont peut-être de moins bonne qualité sur la version papier du rapport.
+
 J'ai également tenté la configuration suivante:
 \begin{figure}[H]
     \centering
@@ -166,7 +167,7 @@ différentes conditions doivent être effectués.
 
 \section{Installation}
 \subsection{Eclairage}
-Le but est de garder le même principe d'éclairage que durant les tests préliminaires, c'est à dire une éclairage perpendiculaire au sol,
+Le but est de garder le même principe d'éclairage que durant les tests préliminaires, c'est à dire un éclairage perpendiculaire au sol,
 en bande, avec des leds IR émettant à 850nm. De plus, il faudrait dans l'idéal que le système d'éclairage suive les contraintes suivantes:
 \begin{itemize}
     \item Diffusion en bande.
@@ -250,7 +251,7 @@ Une partie des packages sont déjà présent par défaut dans l'OS utilisé, \un
 \end{itemize}
 \subsection{Capture d'images de références}
 \subsubsection{Paramètres}
-Le traitement d'image permettant de mettre en valeur et détecter les hydrocarbures nécessite des images de références ayant été capturées dans des conditions précises et avec des paramètres de caméra maîtrisée.
+Le traitement d'image permettant de mettre en valeur et détecter les hydrocarbures nécessite des images de références ayant été capturées dans des conditions précises et avec des paramètres de caméra maîtrisés.
 
 Le programme de capture d'image de références fera plusieurs centaines de capture de la même zone à observer en faisant varier les paramètres suivants:
 \begin{itemize}
@@ -289,7 +290,7 @@ Une première séance de capture directement m'a permis d'effectuer des captures
 La librairie Picamera2 \cite{picamera2} comprend une méthode qui règle la position de la lentille en fonction de la zone à observer pour la mise au point. La méthode a été testée en laboratoire et fonctionnait très bien. Durant la séance de capture,
 la mise au point était définie pour observer les éléments à 90 \si{\centi\meter} de l'objectif.
 
-En reproduisant le problème en laboratoire, j'ai compris que c'est la vitre de protection qui pose problème, en la retirant ou simplement en mettant de la distance entre la vitre et l'objectif, l'image redevient nette.
+En reproduisant le problème en laboratoire, j'ai compris que c'est la vitre de protection qui gène, en la retirant ou simplement en mettant de la distance entre la vitre et l'objectif, l'image redevient nette.
 
 J'estime donc que plusieurs solutions qui s'offrent à moi.
 \begin{enumerate}
@@ -324,7 +325,7 @@ Les fonctions correspondantes au diagramme sont respectivement:
     \item capture(camera), fonction qui effectue une capture et renvoie l'image.
     \item pretreatment(image, layer, threshold), fonction qui binarise l'image, par rapport au threshold et au layer souhaité.
     \item treatment(image\_bin), fonction qui effectue la mise en avant des tâches d'hydrocarbures. Les fonctions d'openCV sont utilisées pour effectuer un opening sur l'image binarisée.
-    \item zone\_detection(line), fonction qui retourne le taux d'ouverture requis pour chaque vérins. Une ligne de pixel est donnée en paramètre. L'emplacement des zones à traiter sont déterminés et l'ouverture est retournée en fonction de la largeur des traces dans chaque section.
+    \item zone\_detection(line), fonction qui retourne le taux d'ouverture requis pour chaque vérin. Une ligne de pixel est donnée en paramètre. L'emplacement des zones à traiter sont déterminés et l'ouverture est retournée en fonction de la largeur des traces dans chaque section.
 \end{itemize}
 
 \subsection{Aperçu du traitement}
@@ -336,7 +337,7 @@ Une fois le prétraitement et le traitement effectués, l'image résultante est 
     \caption{Détection - Image traitée, en rouge, la séparation des sections}
 \end{figure}
 
-Puis en passant une ligne de pixel à \underline{zone\_detection()}, par exemple les lignes verte, bleue et violette de l'image précédent, la fonction
+Puis en passant une ligne de pixel à \underline{zone\_detection()}, par exemple les lignes verte, bleue et violette de l'image précédente, la fonction
 nous retourne le pourcentage d'ouverture de chaque section. L'ouverture retournée correspond au rapport entre la largeur de la tâche et de la section.
 
 \begin{table}[H]
@@ -350,3 +351,22 @@ nous retourne le pourcentage d'ouverture de chaque section. L'ouverture retourn�
         \end{tabular}
     \end{center}
 \end{table}
+
+\subsection{Temps d'exécution}
+Le temps d'exécution moyen du code présenté a été mesuré.
+\begin{table}[H]
+    \begin{center}
+        \caption{Table - Temps d'exécution moyen}
+        \begin{tabular}{|c|c|}
+            Etapes             & Temps moyens [ms] \\ \hline
+            Capture            & 88.922            \\
+            Traitement         & 131.21            \\
+            Calcul d'ouverture & 0.275             \\ \hline
+            Total              & 220.407           \\
+        \end{tabular}
+    \end{center}
+\end{table}
+
+Si le semoir se déplace à une vitesse de 5 [km/h] (1.388 [m/s]), il est possible de connaitre la distance entre deux captures et traitement: \(d = v * t = 1.388 * 0.220407 = 0.30612 [m] \), c'est environ une image toute les 30 [cm].
+
+La capture a un temps fix, je ne pense pas qu'il est possible de l'abaisser. Il est par contre certainement possible de réduire le temps de traitement, soit en optimisant l'algorithme utilisé, soit éventuellement en travaillant en parallèle de la capture.
